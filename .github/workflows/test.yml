@@ -9,4 +9,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: docker run -ti -v $PWD/src:/usr/src/myapp -v $PWD/bin:/usr/src/bin openjdk:11 /usr/src/bin/run
+      - run: docker run -t -v $PWD/src:/usr/src/myapp -v $PWD/bin:/usr/src/bin openjdk:11 /usr/src/bin/run
