@@ -3,7 +3,7 @@ services:
   java:
     image: openjdk:11
     volumes:
-      - ./src:/usr/src/myapp
-      - ./bin:/usr/src/bin
+      - src:/usr/src/myapp
+      - bin:/usr/src/bin
     command:
       - /usr/src/bin/run
