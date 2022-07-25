@@ -208,23 +208,23 @@ public class Main {
 			
 			switch (type.toUpperCase()) {
 			case "B": 
-				itemType = ItemType.Book;
+				itemType = ItemType.BOOK;
 				break;
 				
 			case "D": 
-				itemType = ItemType.Dvd;
+				itemType = ItemType.DVD;
 				break;
 				
 			case "V": 
-				itemType = ItemType.Vhs;
+				itemType = ItemType.VHS;
 				break;
 				
 			case "C": 
-				itemType = ItemType.Cd;
+				itemType = ItemType.CD;
 				break;
 				
 			case "A": 
-				itemType = ItemType.Cassette;
+				itemType = ItemType.CASSETTE;
 				break;
 				
 			case "": 
