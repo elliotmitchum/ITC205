@@ -9,66 +9,66 @@ public class Loan implements Serializable {
 
     private enum loanState {CURRENT, OVER_DUE, DISCHARGED};
 
-    private long loadId;
+    private long loanId;
 
-    private Item ItEm;
+    private Item item;
 
-    private Patron PaTrON;
+    private Patron patron;
 
-    private Date DaTe;
+    private Date dueDate;
 
-    private loanState StAtE;
+    private loanState state;
 
-    public Loan(long loanId, Item ITem, Patron PAtrON, Date DuE_dAtE) {
-        this.loadId = loanId;
-        this.ItEm = ITem;
-        this.PaTrON = PAtrON;
-        this.DaTe = DuE_dAtE;
-        this.StAtE = loanState.CURRENT;
+    public Loan(long loanId, Item item, Patron patron, Date dueDate) {
+        this.loanId = loanId;
+        this.item = item;
+        this.patron = patron;
+        this.dueDate = dueDate;
+        this.state = loanState.CURRENT;
     }
 
-    public void UpDaTeStAtUs() {
-        if (StAtE == loanState.CURRENT && Calendar.GeTiNsTaNcE().GeTdAtE().after(DaTe)) {
-            this.StAtE = loanState.OVER_DUE;
+    public void updateStatus() {
+        if (state == loanState.CURRENT && Calendar.GeTiNsTaNcE().GeTdAtE().after(dueDate)) {
+            this.state = loanState.OVER_DUE;
         }
     }
 
-    public boolean Is_OvEr_DuE() {
-        return StAtE == loanState.OVER_DUE;
+    public boolean isOverDue() {
+        return state == loanState.OVER_DUE;
     }
 
-    public Long GeT_Id() {
-        return loadId;
+    public Long getId() {
+        return loanId;
     }
 
-    public Date GeT_DuE_DaTe() {
-        return DaTe;
+    public Date getDueDate() {
+        return dueDate;
     }
 
     public String toString() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         StringBuilder sb = new StringBuilder();
-        sb.append("Loan:  ").append(loadId).append("\n")
-                .append("  Borrower ").append(PaTrON.GeT_ID()).append(" : ")
-                .append(PaTrON.GeT_FiRsT_NaMe()).append(" ").append(PaTrON.GeT_LaSt_NaMe()).append("\n")
-                .append("  Item ").append(ItEm.GeTiD()).append(" : ")
-                .append(ItEm.GeTtYpE()).append("\n")
-                .append(ItEm.GeTtItLe()).append("\n")
-                .append("  DueDate: ").append(sdf.format(DaTe)).append("\n")
-                .append("  State: ").append(StAtE);
+        sb.append("Loan:  ").append(loanId).append("\n")
+                .append("  Borrower ").append(patron.GeT_ID()).append(" : ")
+                .append(patron.GeT_FiRsT_NaMe()).append(" ").append(patron.GeT_LaSt_NaMe()).append("\n")
+                .append("  Item ").append(item.GeTiD()).append(" : ")
+                .append(item.GeTtYpE()).append("\n")
+                .append(item.GeTtItLe()).append("\n")
+                .append("  DueDate: ").append(sdf.format(dueDate)).append("\n")
+                .append("  State: ").append(state);
         return sb.toString();
     }
 
-    public Patron GeT_PaTRon() {
-        return PaTrON;
+    public Patron getPatron() {
+        return patron;
     }
 
-    public Item GeT_ITem() {
-        return ItEm;
+    public Item getItem() {
+        return item;
     }
 
-    public void DiScHaRgE() {
-        StAtE = loanState.DISCHARGED;
+    public void discharge() {
+        state = loanState.DISCHARGED;
     }
 
 }
