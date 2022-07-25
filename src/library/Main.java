@@ -130,7 +130,8 @@ public class Main {
 		output("\nEnded\n");
 	}	
 
-		private static void PAY_FINES() {
+	
+	private static void PAY_FINES() {
 		new PayFineUI(new pAY_fINE_cONTROL()).RuN();		
 	}
 
@@ -207,23 +208,23 @@ public class Main {
 			
 			switch (type.toUpperCase()) {
 			case "B": 
-				itemType = ItemType.BOOK;
+				itemType = ItemType.Book;
 				break;
 				
 			case "D": 
-				itemType = ItemType.DVD;
+				itemType = ItemType.Dvd;
 				break;
 				
 			case "V": 
-				itemType = ItemType.VHS;
+				itemType = ItemType.Vhs;
 				break;
 				
 			case "C": 
-				itemType = ItemType.CD;
+				itemType = ItemType.Cd;
 				break;
 				
 			case "A": 
-				itemType = ItemType.CASSETTE;
+				itemType = ItemType.Cassette;
 				break;
 				
 			case "": 

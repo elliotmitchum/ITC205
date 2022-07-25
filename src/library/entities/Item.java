@@ -1,104 +1,95 @@
 package library.entities;
-import java.io.Serializable;
 
+import java.io.Serializable;
 
 @SuppressWarnings("serial")
 public class Item implements Serializable {
-	
-	private ItemType TyPe;
-	private String aUtHoR;
-	private String TiTlE;
-	private String CaLlNo;
-	private long Id;
-	
-	private enum iTeM_StAtE { AVAILABLE, ON_LOAN, DAMAGED, RESERVED };
-	private iTeM_StAtE sTaTe;
-	
-	
-	public Item(String AuThOr, String tItLe, String cAlLnO, ItemType ItEmTyPe, long iD) {
-		this.TyPe = ItEmTyPe;
-		this.aUtHoR = AuThOr;
-		this.TiTlE = tItLe;
-		this.CaLlNo = cAlLnO;
-		this.Id = iD;
-		this.sTaTe = iTeM_StAtE.AVAILABLE;
-	}
-	
-	public String toString() {
-		StringBuilder Sb = new StringBuilder();
-		Sb.append("Item: ").append(Id).append("\n")
-		  .append("  Type:   ").append(TyPe).append("\n")
-		  .append("  Title:  ").append(TiTlE).append("\n")
-		  .append("  Author: ").append(aUtHoR).append("\n")
-		  .append("  CallNo: ").append(CaLlNo).append("\n")
-		  .append("  State:  ").append(sTaTe);
-		
-		return Sb.toString();
-	}
 
-	public Long GeTiD() {
-		return Id;
-	}
+    private ItemType itemType;
 
-	public String GeTtItLe() {
-		return TiTlE;
-	}
+    private String author;
 
-	public ItemType GeTtYpE() {
-		return TyPe;
-	}
+    private String title;
 
+    private String callNo;
 
-	
-	public boolean Is_AvAiLaBlE() {
-		return sTaTe == iTeM_StAtE.AVAILABLE;
-	}
+    private long id;
 
-	
-	public boolean Is_On_LoAn() {
-		return sTaTe == iTeM_StAtE.ON_LOAN;
-	}
+    private enum ItemState {Available, OnLoan, Damaged, Reserved};
 
-	
-	public boolean Is_DaMaGeD() {
-		return sTaTe == iTeM_StAtE.DAMAGED;
-	}
+    private ItemState itemState;
 
-	
-	public void TaKeOuT() {
-		if (sTaTe.equals(iTeM_StAtE.AVAILABLE)) 
-			sTaTe = iTeM_StAtE.ON_LOAN;
-		
-		else 
-			throw new RuntimeException(String.format("Item: cannot borrow item while item is in state: %s", sTaTe));
-		
-		
-	}
+    public Item(String author, String title, String callNo, ItemType itemType, long id) {
+        this.itemType = itemType;
+        this.author = author;
+        this.title = title;
+        this.callNo = callNo;
+        this.id = id;
+        this.itemState = ItemState.Available;
+    }
 
+    public String toString() {
+        StringBuilder Sb = new StringBuilder();
+        Sb.append("Item: ").append(id).append("\n")
+            .append("  Type:   ").append(itemType).append("\n")
+            .append("  Title:  ").append(title).append("\n")
+            .append("  Author: ").append(author).append("\n")
+            .append("  CallNo: ").append(callNo).append("\n")
+            .append("  State:  ").append(itemState);
 
-	public void TaKeBaCk(boolean DaMaGeD) {
-		if (sTaTe.equals(iTeM_StAtE.ON_LOAN)) 
-			if (DaMaGeD) 
-				sTaTe = iTeM_StAtE.DAMAGED;			
+        return Sb.toString();
+    }
 
-			else 
-				sTaTe = iTeM_StAtE.AVAILABLE;		
+    public Long getId() {
+        return id;
+    }
 
-		
-		else 
-			throw new RuntimeException(String.format("Item: cannot return item while item is in state: %s", sTaTe));
-				
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	
-	public void rEpAiR() {
-		if (sTaTe.equals(iTeM_StAtE.DAMAGED)) 
-			sTaTe = iTeM_StAtE.AVAILABLE;
-		
-		else 
-			throw new RuntimeException(String.format("Item: cannot repair while Item is in state: %s", sTaTe));
-		
-	}
+    public ItemType getItemType() {
+        return itemType;
+    }
 
+    public boolean isAvailable() {
+        return itemState == ItemState.Available;
+    }
+
+    public boolean isOnLoan() {
+        return itemState == ItemState.OnLoan;
+    }
+
+    public boolean isDamaged() {
+        return itemState == ItemState.Damaged;
+    }
+
+    public void takeOut() {
+        if (itemState.equals(ItemState.Available)) {
+            itemState = ItemState.OnLoan;
+        } else {
+            throw new RuntimeException(String.format("Item: cannot borrow item while item is in state: %s", itemState));
+        }
+    }
+
+    public void takeBack(boolean isDamaged) {
+        if (itemState.equals(ItemState.OnLoan)) {
+            if (isDamaged) {
+                itemState = ItemState.Damaged;
+            } else {
+                itemState = ItemState.Available;
+            }
+        } else {
+            throw new RuntimeException(String.format("Item: cannot return item while item is in state: %s", itemState));
+        }
+    }
+
+    public void repair() {
+        if (itemState.equals(ItemState.Damaged)) {
+            itemState = ItemState.Available;
+        } else {
+            throw new RuntimeException(String.format("Item: cannot repair while Item is in state: %s", itemState));
+        }
+    }
 
 }

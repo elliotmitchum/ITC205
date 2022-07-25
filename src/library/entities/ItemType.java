@@ -4,21 +4,23 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum ItemType {
-	BOOK, DVD, VHS, CD, CASSETTE;
-	
-	private static final ItemType[] VALUES = values();
 
-	private static final Map<ItemType, String> VALUE_REPR_MAP = new HashMap<ItemType, String>();
-	static {
-		VALUE_REPR_MAP.put(ItemType.BOOK, "Book");
-		VALUE_REPR_MAP.put(ItemType.DVD, "DVD");
-		VALUE_REPR_MAP.put(ItemType.VHS, "VHS Video cassette");
-		VALUE_REPR_MAP.put(ItemType.CD, "CD Audio disk");
-		VALUE_REPR_MAP.put(ItemType.CASSETTE, "Audio cassette");
-	}
-	
-	public  String toString() {
-		return VALUE_REPR_MAP.get(this);
-	}
+    Book, Dvd, Vhs, Cd, Cassette;
+
+    private static final ItemType[] values = values();
+
+    private static final Map<ItemType, String> itemTypes = new HashMap<ItemType, String>();
+
+    static {
+        itemTypes.put(ItemType.Book, "Book");
+        itemTypes.put(ItemType.Dvd, "DVD");
+        itemTypes.put(ItemType.Vhs, "VHS Video cassette");
+        itemTypes.put(ItemType.Cd, "CD Audio disk");
+        itemTypes.put(ItemType.Cassette, "Audio cassette");
+    }
+
+    public String toString() {
+        return itemTypes.get(this);
+    }
 
 }
