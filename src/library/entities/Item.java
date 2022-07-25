@@ -11,7 +11,7 @@ public class Item implements Serializable {
 
     private String title;
 
-    private String callNo;
+    private String callNumber;
 
     private long id;
 
@@ -19,11 +19,11 @@ public class Item implements Serializable {
 
     private ItemState itemState;
 
-    public Item(String author, String title, String callNo, ItemType itemType, long id) {
+    public Item(String author, String title, String callNumber, ItemType itemType, long id) {
         this.itemType = itemType;
         this.author = author;
         this.title = title;
-        this.callNo = callNo;
+        this.callNumber = callNumber;
         this.id = id;
         this.itemState = ItemState.Available;
     }
@@ -34,7 +34,7 @@ public class Item implements Serializable {
             .append("  Type:   ").append(itemType).append("\n")
             .append("  Title:  ").append(title).append("\n")
             .append("  Author: ").append(author).append("\n")
-            .append("  CallNo: ").append(callNo).append("\n")
+            .append("  CallNo: ").append(callNumber).append("\n")
             .append("  State:  ").append(itemState);
 
         return Sb.toString();
