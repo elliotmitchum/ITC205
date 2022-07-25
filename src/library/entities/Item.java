@@ -17,7 +17,7 @@ public class Item implements Serializable {
 
     private enum ItemState {Available, OnLoan, Damaged, Reserved};
 
-    private ItemState itemState;
+    private ItemState state;
 
     public Item(String author, String title, String callNumber, ItemType itemType, long id) {
         this.itemType = itemType;
@@ -25,7 +25,7 @@ public class Item implements Serializable {
         this.title = title;
         this.callNumber = callNumber;
         this.id = id;
-        this.itemState = ItemState.Available;
+        this.state = ItemState.Available;
     }
 
     public String toString() {
@@ -35,7 +35,7 @@ public class Item implements Serializable {
             .append("  Title:  ").append(title).append("\n")
             .append("  Author: ").append(author).append("\n")
             .append("  CallNo: ").append(callNumber).append("\n")
-            .append("  State:  ").append(itemState);
+            .append("  State:  ").append(state);
 
         return Sb.toString();
     }
@@ -53,42 +53,42 @@ public class Item implements Serializable {
     }
 
     public boolean isAvailable() {
-        return itemState == ItemState.Available;
+        return state == ItemState.Available;
     }
 
     public boolean isOnLoan() {
-        return itemState == ItemState.OnLoan;
+        return state == ItemState.OnLoan;
     }
 
     public boolean isDamaged() {
-        return itemState == ItemState.Damaged;
+        return state == ItemState.Damaged;
     }
 
     public void takeOut() {
-        if (itemState.equals(ItemState.Available)) {
-            itemState = ItemState.OnLoan;
+        if (state.equals(ItemState.Available)) {
+            state = ItemState.OnLoan;
         } else {
-            throw new RuntimeException(String.format("Item: cannot borrow item while item is in state: %s", itemState));
+            throw new RuntimeException(String.format("Item: cannot borrow item while item is in state: %s", state));
         }
     }
 
     public void takeBack(boolean isDamaged) {
-        if (itemState.equals(ItemState.OnLoan)) {
+        if (state.equals(ItemState.OnLoan)) {
             if (isDamaged) {
-                itemState = ItemState.Damaged;
+                state = ItemState.Damaged;
             } else {
-                itemState = ItemState.Available;
+                state = ItemState.Available;
             }
         } else {
-            throw new RuntimeException(String.format("Item: cannot return item while item is in state: %s", itemState));
+            throw new RuntimeException(String.format("Item: cannot return item while item is in state: %s", state));
         }
     }
 
     public void repair() {
-        if (itemState.equals(ItemState.Damaged)) {
-            itemState = ItemState.Available;
+        if (state.equals(ItemState.Damaged)) {
+            state = ItemState.Available;
         } else {
-            throw new RuntimeException(String.format("Item: cannot repair while Item is in state: %s", itemState));
+            throw new RuntimeException(String.format("Item: cannot repair while Item is in state: %s", state));
         }
     }
 
