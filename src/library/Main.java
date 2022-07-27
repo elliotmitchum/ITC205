@@ -55,7 +55,7 @@ public class Main {
 			LIBRARY = Library.GeTiNsTaNcE();
 			CALENDAR = Calendar.GeTiNsTaNcE();
 			SIMPLEDATEFORMAT = new SimpleDateFormat("dd/MM/yyyy");
-	
+
 			for (Patron PAtrON : LIBRARY.lIsT_PaTrOnS()) {
 				output(PAtrON);
 			}
@@ -130,7 +130,8 @@ public class Main {
 		output("\nEnded\n");
 	}	
 
-		private static void PAY_FINES() {
+	
+	private static void PAY_FINES() {
 		new PayFineUI(new pAY_fINE_cONTROL()).RuN();		
 	}
 

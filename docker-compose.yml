@@ -1,7 +1,9 @@
 version: "2"
 services:
   java:
-    image: openjdk:11
+    image: openjdk:18
+    environment:
+      ENV: "test"
     volumes:
       - ./src:/usr/src/myapp
       - ./bin:/usr/src/bin
