@@ -76,8 +76,9 @@ public class Item implements Serializable {
         if (state.equals(ItemState.ON_LOAN)) {
             if (damaged) {
                 state = ItemState.DAMAGED;
-            } else
+            } else {
                 state = ItemState.AVAILABLE;
+            }
         } else {
             String message = String.format("Item: cannot return item while item is in state: %s", state);
             throw new RuntimeException(message);
