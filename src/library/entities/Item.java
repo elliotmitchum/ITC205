@@ -64,36 +64,30 @@ public class Item implements Serializable {
     }
 
     public void takeout() {
-        if (state.equals(ItemState.AVAILABLE))
+        if (state.equals(ItemState.AVAILABLE)) {
             state = ItemState.ON_LOAN;
-
-        else
+        } else {
             throw new RuntimeException(String.format("Item: cannot borrow item while item is in state: %s", state));
-
-
+        }
     }
 
     public void takeback(boolean DaMaGeD) {
-        if (state.equals(ItemState.ON_LOAN))
-            if (DaMaGeD)
+        if (state.equals(ItemState.ON_LOAN)) {
+            if (DaMaGeD) {
                 state = ItemState.DAMAGED;
-
-            else
+            } else
                 state = ItemState.AVAILABLE;
-
-
-        else
+        } else {
             throw new RuntimeException(String.format("Item: cannot return item while item is in state: %s", state));
-
+        }
     }
 
     public void repair() {
-        if (state.equals(ItemState.DAMAGED))
+        if (state.equals(ItemState.DAMAGED)) {
             state = ItemState.AVAILABLE;
-
-        else
+        } else {
             throw new RuntimeException(String.format("Item: cannot repair while Item is in state: %s", state));
-
+        }
     }
 
 }
