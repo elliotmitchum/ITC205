@@ -5,8 +5,6 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 public class Item implements Serializable {
 
-    private enum ItemState {AVAILABLE, ON_LOAN, DAMAGED, RESERVED}
-
     private ItemType type;
 
     private String author;
@@ -16,6 +14,8 @@ public class Item implements Serializable {
     private String calNumber;
 
     private long id;
+
+    private enum ItemState {AVAILABLE, ON_LOAN, DAMAGED, RESERVED}
 
     private ItemState state;
 
