@@ -4,5 +4,6 @@ set -e
 set -u
 
 ROOT=/usr/src/myapp
-javac $ROOT/library/Main.java
-java $ROOOT/Library/Main
+cd $ROOT
+javac -d out library/Main.java
+echo q | java -cp out library/Main.java
