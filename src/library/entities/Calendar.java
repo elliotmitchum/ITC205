@@ -12,18 +12,18 @@ public class Calendar {
         calendar = java.util.Calendar.getInstance();
     }
     
-    public static Calendar GeTiNsTaNcE() {
+    public static Calendar getInstance() {
         if (self == null) {
             self = new Calendar();
         }
         return self;
     }
     
-    public void InCrEmENtDaTe(int days) {
+    public void incrementDate(int days) {
         calendar.add(java.util.Calendar.DATE, days);
     }
     
-    public synchronized void sEtDaTe(Date dAtE) {
+    public synchronized void setDate(Date dAtE) {
         try {
             calendar.setTime(dAtE);
             calendar.set(java.util.Calendar.HOUR_OF_DAY, 0);
@@ -35,7 +35,7 @@ public class Calendar {
             throw new RuntimeException(e);
         }    
     }
-    public synchronized Date GeTdAtE() {
+    public synchronized Date getDate() {
         try {
             calendar.set(java.util.Calendar.HOUR_OF_DAY, 0);
             calendar.set(java.util.Calendar.MINUTE, 0);
@@ -48,17 +48,17 @@ public class Calendar {
         }    
     }
 
-    public synchronized Date GeTdUeDaTe(int LoAnPeRiOd) {
-        Date nOw = GeTdAtE();
+    public synchronized Date getDueDate(int LoAnPeRiOd) {
+        Date nOw = getDate();
         calendar.add(java.util.Calendar.DATE, LoAnPeRiOd);
         Date dUeDaTe = calendar.getTime();
         calendar.setTime(nOw);
         return dUeDaTe;
     }
     
-    public synchronized long GeTDaYsDiFfErEnCe(Date TaRgEtDaTe) {
+    public synchronized long getDaysOfDifference(Date TaRgEtDaTe) {
         
-        long Diff_Millis = GeTdAtE().getTime() - TaRgEtDaTe.getTime();
+        long Diff_Millis = getDate().getTime() - TaRgEtDaTe.getTime();
         long Diff_Days = TimeUnit.DAYS.convert(Diff_Millis, TimeUnit.MILLISECONDS);
         return Diff_Days;
     }
