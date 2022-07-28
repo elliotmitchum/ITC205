@@ -49,11 +49,11 @@ public class Calendar {
     }
 
     public synchronized Date getDueDate(int LoAnPeRiOd) {
-        Date nOw = getDate();
+        Date now = getDate();
         calendar.add(java.util.Calendar.DATE, LoAnPeRiOd);
-        Date dUeDaTe = calendar.getTime();
-        calendar.setTime(nOw);
-        return dUeDaTe;
+        Date dueDate = calendar.getTime();
+        calendar.setTime(now);
+        return dueDate;
     }
     
     public synchronized long getDaysOfDifference(Date TaRgEtDaTe) {
