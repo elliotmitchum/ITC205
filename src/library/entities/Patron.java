@@ -8,38 +8,37 @@ import java.util.Map;
 @SuppressWarnings("serial")
 public class Patron implements Serializable {
 
-    private long PaTrOn_Id;
-    private String FiRsT_NaMe;
-    private String LaSt_NaMe;
-    private String EmAiL_AdDrEsS;
-    private long PhOnE_NuMbEr;
-    private double FiNeS_OwInG;
+    private long patronId;
+    private String firstName;
+    private String lastName;
+    private String emailAddress;
+    private long phoneNumber;
+    private double finesOwing;
     
-    private Map<Long, Loan> cUrReNt_lOaNs;
+    private Map<Long, Loan> currentLoans;
 
     
     public Patron(String fIrSt_nAmE, String lAsT_nAmE, String eMaIl_aDdReSs, long pHoNe_nUmBeR, long mEmBeR_iD) {
-        this.FiRsT_NaMe = fIrSt_nAmE;
-        this.LaSt_NaMe = lAsT_nAmE;
-        this.EmAiL_AdDrEsS = eMaIl_aDdReSs;
-        this.PhOnE_NuMbEr = pHoNe_nUmBeR;
-        this.PaTrOn_Id = mEmBeR_iD;
-        
-        this.cUrReNt_lOaNs = new HashMap<>();
+        this.firstName = fIrSt_nAmE;
+        this.lastName = lAsT_nAmE;
+        this.emailAddress = eMaIl_aDdReSs;
+        this.phoneNumber = pHoNe_nUmBeR;
+        this.patronId = mEmBeR_iD;
+        this.currentLoans = new HashMap<>();
     }
 
     
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("Patron:  ").append(PaTrOn_Id).append("\n")
-          .append("  Name:  ").append(FiRsT_NaMe).append(" ").append(LaSt_NaMe).append("\n")
-          .append("  Email: ").append(EmAiL_AdDrEsS).append("\n")
-          .append("  Phone: ").append(PhOnE_NuMbEr)
+        sb.append("Patron:  ").append(patronId).append("\n")
+          .append("  Name:  ").append(firstName).append(" ").append(lastName).append("\n")
+          .append("  Email: ").append(emailAddress).append("\n")
+          .append("  Phone: ").append(phoneNumber)
           .append("\n")
-          .append(String.format("  Fines Owed :  $%.2f", FiNeS_OwInG))
+          .append(String.format("  Fines Owed :  $%.2f", finesOwing))
           .append("\n");
         
-        for (Loan LoAn : cUrReNt_lOaNs.values()) {
+        for (Loan LoAn : currentLoans.values()) {
             sb.append(LoAn).append("\n");
         }          
         return sb.toString();
@@ -47,28 +46,28 @@ public class Patron implements Serializable {
 
     
     public Long GeT_ID() {
-        return PaTrOn_Id;
+        return patronId;
     }
 
     
     public List<Loan> GeT_LoAnS() {
-        return new ArrayList<Loan>(cUrReNt_lOaNs.values());
+        return new ArrayList<Loan>(currentLoans.values());
     }
 
     
     public int gEt_nUmBeR_Of_CuRrEnT_LoAnS() {
-        return cUrReNt_lOaNs.size();
+        return currentLoans.size();
     }
 
     
     public double FiNeS_OwEd() {
-        return FiNeS_OwInG;
+        return finesOwing;
     }
 
     
     public void TaKe_OuT_LoAn(Loan lOaN) {
-        if (!cUrReNt_lOaNs.containsKey(lOaN.GeT_Id())) 
-            cUrReNt_lOaNs.put(lOaN.GeT_Id(), lOaN);
+        if (!currentLoans.containsKey(lOaN.GeT_Id()))
+            currentLoans.put(lOaN.GeT_Id(), lOaN);
         
         else 
             throw new RuntimeException("Duplicate loan added to member");
@@ -76,8 +75,8 @@ public class Patron implements Serializable {
     }
 
     public void dIsChArGeLoAn(Loan LoAn) {
-        if (cUrReNt_lOaNs.containsKey(LoAn.GeT_Id())) 
-            cUrReNt_lOaNs.remove(LoAn.GeT_Id());
+        if (currentLoans.containsKey(LoAn.GeT_Id()))
+            currentLoans.remove(LoAn.GeT_Id());
         
         else 
             throw new RuntimeException("No such loan held by member");
@@ -85,17 +84,17 @@ public class Patron implements Serializable {
     }
     
     public String GeT_LaSt_NaMe() {
-        return LaSt_NaMe;
+        return lastName;
     }
 
     
     public String GeT_FiRsT_NaMe() {
-        return FiRsT_NaMe;
+        return firstName;
     }
 
 
     public void AdD_FiNe(double fine) {
-        FiNeS_OwInG += fine;
+        finesOwing += fine;
     }
     
     public double PaY_FiNe(double AmOuNt) {
@@ -103,12 +102,12 @@ public class Patron implements Serializable {
             throw new RuntimeException("Member.payFine: amount must be positive");
         
         double cHaNgE = 0;
-        if (AmOuNt > FiNeS_OwInG) {
-            cHaNgE = AmOuNt - FiNeS_OwInG;
-            FiNeS_OwInG = 0;
+        if (AmOuNt > finesOwing) {
+            cHaNgE = AmOuNt - finesOwing;
+            finesOwing = 0;
         }
         else 
-            FiNeS_OwInG -= AmOuNt;
+            finesOwing -= AmOuNt;
         
         return cHaNgE;
     }
