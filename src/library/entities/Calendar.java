@@ -22,10 +22,10 @@ public class Calendar {
     public void incrementDate(int days) {
         calendar.add(java.util.Calendar.DATE, days);
     }
-    
-    public synchronized void setDate(Date dAtE) {
+
+    public synchronized void setDate(Date date) {
         try {
-            calendar.setTime(dAtE);
+            calendar.setTime(date);
             calendar.set(java.util.Calendar.HOUR_OF_DAY, 0);
             calendar.set(java.util.Calendar.MINUTE, 0);
             calendar.set(java.util.Calendar.SECOND, 0);
@@ -56,9 +56,8 @@ public class Calendar {
         return dueDate;
     }
     
-    public synchronized long getDaysOfDifference(Date TaRgEtDaTe) {
-        
-        long Diff_Millis = getDate().getTime() - TaRgEtDaTe.getTime();
+    public synchronized long getDaysOfDifference(Date targetDate) {
+        long Diff_Millis = getDate().getTime() - targetDate.getTime();
         long Diff_Days = TimeUnit.DAYS.convert(Diff_Millis, TimeUnit.MILLISECONDS);
         return Diff_Days;
     }
