@@ -45,27 +45,27 @@ public class Patron implements Serializable {
     }
 
     
-    public Long GeT_ID() {
+    public Long getId() {
         return patronId;
     }
 
     
-    public List<Loan> GeT_LoAnS() {
+    public List<Loan> getLoans() {
         return new ArrayList<Loan>(currentLoans.values());
     }
 
     
-    public int gEt_nUmBeR_Of_CuRrEnT_LoAnS() {
+    public int getNumberOfCurrentLoans() {
         return currentLoans.size();
     }
 
     
-    public double FiNeS_OwEd() {
+    public double finesOwed() {
         return finesOwing;
     }
 
     
-    public void TaKe_OuT_LoAn(Loan lOaN) {
+    public void takeOutLoan(Loan lOaN) {
         if (!currentLoans.containsKey(lOaN.GeT_Id()))
             currentLoans.put(lOaN.GeT_Id(), lOaN);
         
@@ -74,7 +74,7 @@ public class Patron implements Serializable {
                 
     }
 
-    public void dIsChArGeLoAn(Loan LoAn) {
+    public void dischargeloan(Loan LoAn) {
         if (currentLoans.containsKey(LoAn.GeT_Id()))
             currentLoans.remove(LoAn.GeT_Id());
         
@@ -83,21 +83,21 @@ public class Patron implements Serializable {
                 
     }
     
-    public String GeT_LaSt_NaMe() {
+    public String getLastName() {
         return lastName;
     }
 
     
-    public String GeT_FiRsT_NaMe() {
+    public String getFirstName() {
         return firstName;
     }
 
 
-    public void AdD_FiNe(double fine) {
+    public void addFine(double fine) {
         finesOwing += fine;
     }
     
-    public double PaY_FiNe(double AmOuNt) {
+    public double payFine(double AmOuNt) {
         if (AmOuNt < 0) 
             throw new RuntimeException("Member.payFine: amount must be positive");
         
