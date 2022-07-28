@@ -203,7 +203,7 @@ public class Library implements Serializable {
         double oVeR_DuE_FiNe = CaLcUlAtE_OvEr_DuE_FiNe(cUrReNt_LoAn);
         PAtrON.addFine(oVeR_DuE_FiNe);
         
-        PAtrON.dischargeloan(cUrReNt_LoAn);
+        PAtrON.dischargeLoan(cUrReNt_LoAn);
         itEM.TaKeBaCk(iS_dAmAgEd);
         if (iS_dAmAgEd) {
             PAtrON.addFine(damageFee);
