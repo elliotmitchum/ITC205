@@ -65,22 +65,22 @@ public class Patron implements Serializable {
     }
 
     
-    public void takeOutLoan(Loan lOaN) {
-        if (!currentLoans.containsKey(lOaN.GeT_Id()))
-            currentLoans.put(lOaN.GeT_Id(), lOaN);
-        
-        else 
+    public void takeOutLoan(Loan loan) {
+        if (!currentLoans.containsKey(loan.GeT_Id())) {
+            currentLoans.put(loan.GeT_Id(), loan);
+        }
+        else {
             throw new RuntimeException("Duplicate loan added to member");
-                
+        }
     }
 
-    public void dischargeloan(Loan LoAn) {
-        if (currentLoans.containsKey(LoAn.GeT_Id()))
-            currentLoans.remove(LoAn.GeT_Id());
-        
-        else 
+    public void dischargeLoan(Loan loan) {
+        if (currentLoans.containsKey(loan.GeT_Id())) {
+            currentLoans.remove(loan.GeT_Id());
+        }
+        else {
             throw new RuntimeException("No such loan held by member");
-                
+        }
     }
     
     public String getLastName() {
