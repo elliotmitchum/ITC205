@@ -18,12 +18,12 @@ public class Patron implements Serializable {
     private Map<Long, Loan> currentLoans;
 
     
-    public Patron(String fIrSt_nAmE, String lAsT_nAmE, String eMaIl_aDdReSs, long pHoNe_nUmBeR, long mEmBeR_iD) {
-        this.firstName = fIrSt_nAmE;
-        this.lastName = lAsT_nAmE;
-        this.emailAddress = eMaIl_aDdReSs;
-        this.phoneNumber = pHoNe_nUmBeR;
-        this.patronId = mEmBeR_iD;
+    public Patron(String firstName, String lastName, String emailAddress, long phoneNumber, long memberId) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.emailAddress = emailAddress;
+        this.phoneNumber = phoneNumber;
+        this.patronId = memberId;
         this.currentLoans = new HashMap<>();
     }
 
