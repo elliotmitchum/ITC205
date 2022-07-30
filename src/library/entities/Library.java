@@ -71,13 +71,13 @@ public class Library implements Serializable {
     }
 
     
-    public static synchronized void SaVe() {
+    public static synchronized void save() {
         if (self != null) {
             self.currentDate = Calendar.GeTiNsTaNcE().GeTdAtE();
-            try (ObjectOutputStream LiBrArY_fIlE = new ObjectOutputStream(new FileOutputStream(LIBRARY_FILE));) {
-                LiBrArY_fIlE.writeObject(self);
-                LiBrArY_fIlE.flush();
-                LiBrArY_fIlE.close();    
+            try (ObjectOutputStream libraryFile = new ObjectOutputStream(new FileOutputStream(LIBRARY_FILE));) {
+                libraryFile.writeObject(self);
+                libraryFile.flush();
+                libraryFile.close();
             }
             catch (Exception e) {
                 throw new RuntimeException(e);

@@ -122,7 +122,7 @@ public class Main {
                     break;
                 }
                 
-                Library.SaVe();
+                Library.save();
             }            
         } catch (RuntimeException e) {
             output(e);
