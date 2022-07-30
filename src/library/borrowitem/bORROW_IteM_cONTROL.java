@@ -22,7 +22,7 @@ public class bORROW_IteM_cONTROL {
     
     
     public bORROW_IteM_cONTROL() {
-        this.lIbRaRy = Library.GeTiNsTaNcE();
+        this.lIbRaRy = Library.getInstance();
         sTaTe = CONTROL_STATE.INITIALISED;
     }
     

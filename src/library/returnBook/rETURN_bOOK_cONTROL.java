@@ -14,7 +14,7 @@ public class rETURN_bOOK_cONTROL {
     
 
     public rETURN_bOOK_cONTROL() {
-        this.lIbRaRy = Library.GeTiNsTaNcE();
+        this.lIbRaRy = Library.getInstance();
         sTaTe = cOnTrOl_sTaTe.INITIALISED;
     }
     

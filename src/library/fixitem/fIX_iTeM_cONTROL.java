@@ -13,7 +13,7 @@ public class fIX_iTeM_cONTROL {
 
 
     public fIX_iTeM_cONTROL() {
-        this.LiBrArY = Library.GeTiNsTaNcE();
+        this.LiBrArY = Library.getInstance();
         StAtE = CoNtRoL_StAtE.INITIALISED;
     }
     

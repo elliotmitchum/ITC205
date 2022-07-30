@@ -13,7 +13,7 @@ public class pAY_fINE_cONTROL {
 
 
     public pAY_fINE_cONTROL() {
-        this.LiBrArY = Library.GeTiNsTaNcE();
+        this.LiBrArY = Library.getInstance();
         StAtE = cOnTrOl_sTaTe.INITIALISED;
     }
     

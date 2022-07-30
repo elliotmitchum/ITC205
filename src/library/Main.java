@@ -52,7 +52,7 @@ public class Main {
     public static void main(String[] args) {        
         try {            
             SCANNER = new Scanner(System.in);
-            LIBRARY = Library.GeTiNsTaNcE();
+            LIBRARY = Library.getInstance();
             CALENDAR = Calendar.GeTiNsTaNcE();
             SIMPLEDATEFORMAT = new SimpleDateFormat("dd/MM/yyyy");
 
