@@ -104,7 +104,7 @@ public class bORROW_IteM_cONTROL {
             throw new RuntimeException("BorrowItemControl: cannot call commitLoans except in FINALISING state");
             
         for (Item B : pEnDiNg_LiSt) {
-            Loan lOaN = lIbRaRy.iSsUe_LoAn(B, PaTrOn);
+            Loan lOaN = lIbRaRy.issueLoan(B, PaTrOn);
             cOmPlEtEd_LiSt.add(lOaN);            
         }
         uI.DiSpLaY("Completed Loan Slip");

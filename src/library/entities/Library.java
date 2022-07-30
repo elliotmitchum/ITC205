@@ -174,13 +174,13 @@ public class Library implements Serializable {
     }
 
     
-    public Loan iSsUe_LoAn(Item iTeM, Patron pAtRoN) {
+    public Loan issueLoan(Item item, Patron patron) {
         Date dueDate = Calendar.GeTiNsTaNcE().GeTdUeDaTe(LOAN_PERIOD);
-        Loan loan = new Loan(getNextLoanId(), iTeM, pAtRoN, dueDate);
-        pAtRoN.TaKe_OuT_LoAn(loan);
-        iTeM.TaKeOuT();
+        Loan loan = new Loan(getNextLoanId(), item, patron, dueDate);
+        patron.TaKe_OuT_LoAn(loan);
+        item.TaKeOuT();
         loans.put(loan.GeT_Id(), loan);
-        currentLoans.put(iTeM.GeTiD(), loan);
+        currentLoans.put(item.GeTiD(), loan);
         return loan;
     }
     
@@ -193,11 +193,11 @@ public class Library implements Serializable {
     }
 
     
-    public double CaLcUlAtE_OvEr_DuE_FiNe(Loan LoAn) {
-        if (LoAn.Is_OvEr_DuE()) {
-            long DaYs_OvEr_DuE = Calendar.GeTiNsTaNcE().GeTDaYsDiFfErEnCe(LoAn.GeT_DuE_DaTe());
-            double fInE = DaYs_OvEr_DuE * FINE_PER_DAY;
-            return fInE;
+    public double calculateOverDueFine(Loan loan) {
+        if (loan.Is_OvEr_DuE()) {
+            long daysOverDue = Calendar.GeTiNsTaNcE().GeTDaYsDiFfErEnCe(loan.GeT_DuE_DaTe());
+            double fine = daysOverDue * FINE_PER_DAY;
+            return fine;
         }
         return 0.0;        
     }
@@ -207,7 +207,7 @@ public class Library implements Serializable {
         Patron PAtrON = cUrReNt_LoAn.GeT_PaTRon();
         Item itEM  = cUrReNt_LoAn.GeT_ITem();
         
-        double oVeR_DuE_FiNe = CaLcUlAtE_OvEr_DuE_FiNe(cUrReNt_LoAn);
+        double oVeR_DuE_FiNe = calculateOverDueFine(cUrReNt_LoAn);
         PAtrON.AdD_FiNe(oVeR_DuE_FiNe);    
         
         PAtrON.dIsChArGeLoAn(cUrReNt_LoAn);
@@ -233,11 +233,7 @@ public class Library implements Serializable {
             cUrReNt_ItEm.rEpAiR();
             damagedItems.remove(cUrReNt_ItEm.GeTiD());
         }
-        else 
+        else
             throw new RuntimeException("Library: repairItem: item is not damaged");
-        
-        
     }
-    
-    
 }
