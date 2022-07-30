@@ -72,7 +72,7 @@ public class rETURN_bOOK_cONTROL {
         if (!sTaTe.equals(cOnTrOl_sTaTe.INSPECTING)) 
             throw new RuntimeException("ReturnBookControl: cannot call dischargeLoan except in INSPECTING state");
         
-        lIbRaRy.DiScHaRgE_LoAn(CurrENT_loan, iS_dAmAgEd);
+        lIbRaRy.dischargeLoan(CurrENT_loan, iS_dAmAgEd);
         CurrENT_loan = null;
         Ui.SeTrEaDy();
         sTaTe = cOnTrOl_sTaTe.READY;                

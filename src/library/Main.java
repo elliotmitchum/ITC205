@@ -182,7 +182,7 @@ public class Main {
         try {
             int days = Integer.valueOf(input("Enter number of days: ")).intValue();
             CALENDAR.InCrEmENtDaTe(days);
-            LIBRARY.UpDaTe_CuRrEnT_LoAnS_StAtUs();
+            LIBRARY.updateCurrentLoansStatus();
             output(SIMPLEDATEFORMAT.format(CALENDAR.GeTdAtE()));
             
         } catch (NumberFormatException e) {

@@ -203,37 +203,38 @@ public class Library implements Serializable {
     }
 
 
-    public void DiScHaRgE_LoAn(Loan cUrReNt_LoAn, boolean iS_dAmAgEd) {
-        Patron PAtrON = cUrReNt_LoAn.GeT_PaTRon();
-        Item itEM  = cUrReNt_LoAn.GeT_ITem();
+    public void dischargeLoan(Loan currentLoan, boolean isDamaged) {
+        Patron patron = currentLoan.GeT_PaTRon();
+        Item item  = currentLoan.GeT_ITem();
         
-        double oVeR_DuE_FiNe = calculateOverDueFine(cUrReNt_LoAn);
-        PAtrON.AdD_FiNe(oVeR_DuE_FiNe);    
+        double overDueFine = calculateOverDueFine(currentLoan);
+        patron.AdD_FiNe(overDueFine);
         
-        PAtrON.dIsChArGeLoAn(cUrReNt_LoAn);
-        itEM.TaKeBaCk(iS_dAmAgEd);
-        if (iS_dAmAgEd) {
-            PAtrON.AdD_FiNe(DAMAGE_FEE);
-            damagedItems.put(itEM.GeTiD(), itEM);
+        patron.dIsChArGeLoAn(currentLoan);
+        item.TaKeBaCk(isDamaged);
+        if (isDamaged) {
+            patron.AdD_FiNe(DAMAGE_FEE);
+            damagedItems.put(item.GeTiD(), item);
         }
-        cUrReNt_LoAn.DiScHaRgE();
-        currentLoans.remove(itEM.GeTiD());
+        currentLoan.DiScHaRgE();
+        currentLoans.remove(item.GeTiD());
     }
 
 
-    public void UpDaTe_CuRrEnT_LoAnS_StAtUs() {
-        for (Loan lOaN : currentLoans.values())
-            lOaN.UpDaTeStAtUs();
-                
+    public void updateCurrentLoansStatus() {
+        for (Loan loan : currentLoans.values()) {
+            loan.UpDaTeStAtUs();
+        }
     }
 
 
-    public void RePaIrITem(Item cUrReNt_ItEm) {
-        if (damagedItems.containsKey(cUrReNt_ItEm.GeTiD())) {
-            cUrReNt_ItEm.rEpAiR();
-            damagedItems.remove(cUrReNt_ItEm.GeTiD());
+    public void repairItem(Item currentItem) {
+        if (damagedItems.containsKey(currentItem.GeTiD())) {
+            currentItem.rEpAiR();
+            damagedItems.remove(currentItem.GeTiD());
         }
-        else
+        else {
             throw new RuntimeException("Library: repairItem: item is not damaged");
+        }
     }
 }
