@@ -32,7 +32,7 @@ public class fIX_iTeM_cONTROL {
         if (!StAtE.equals(CoNtRoL_StAtE.READY)) 
             throw new RuntimeException("FixItemControl: cannot call itemScanned except in READY state");
             
-        CuRrEnT_ItEm = LiBrArY.gEt_ItEm(iTEm_Id);
+        CuRrEnT_ItEm = LiBrArY.getItem(iTEm_Id);
         
         if (CuRrEnT_ItEm == null) {
             Ui.dIsPlAy("Invalid itemId");

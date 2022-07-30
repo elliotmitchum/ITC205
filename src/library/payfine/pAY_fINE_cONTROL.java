@@ -32,7 +32,7 @@ public class pAY_fINE_cONTROL {
         if (!StAtE.equals(cOnTrOl_sTaTe.READY)) 
             throw new RuntimeException("PayFineControl: cannot call cardSwiped except in READY state");
             
-        paTRon = LiBrArY.gEt_PaTrOn(PatROn_Id);
+        paTRon = LiBrArY.getPatron(PatROn_Id);
         
         if (paTRon == null) {
             Ui.DiSplAY("Invalid Patron Id");

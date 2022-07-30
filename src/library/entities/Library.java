@@ -86,92 +86,97 @@ public class Library implements Serializable {
     }
 
     
-    private long gEt_NeXt_ItEm_Id() {
+    private long getNextItemId() {
         return nextItemId++;
     }
 
     
-    private long gEt_NeXt_PaTrOn_Id() {
+    private long getNextPatronId() {
         return nextPatronId++;
     }
 
     
-    private long gEt_NeXt_LoAn_Id() {
+    private long getNextLoanId() {
         return nextLoanId++;
     }
 
     
-    public List<Patron> lIsT_PaTrOnS() {        
+    public List<Patron> listPatrons() {
         return new ArrayList<Patron>(patrons.values());
     }
 
 
-    public List<Item> lIsT_ItEmS() {        
+    public List<Item> listItems() {
         return new ArrayList<Item>(catalog.values());
     }
 
 
-    public List<Loan> lISt_CuRrEnT_LoAnS() {
+    public List<Loan> listCurrentLoans() {
         return new ArrayList<Loan>(currentLoans.values());
     }
 
 
-    public Patron aDd_PaTrOn(String firstName, String lastName, String email, long phoneNo) {        
-        Patron PaTrOn = new Patron(firstName, lastName, email, phoneNo, gEt_NeXt_PaTrOn_Id());
-        patrons.put(PaTrOn.GeT_ID(), PaTrOn);
-        return PaTrOn;
+    public Patron addPatron(String firstName, String lastName, String email, long phoneNo) {
+        Patron patron = new Patron(firstName, lastName, email, phoneNo, getNextPatronId());
+        patrons.put(patron.GeT_ID(), patron);
+        return patron;
     }
 
     
-    public Item aDd_ItEm(String a, String t, String c, ItemType i) {        
-        Item ItEm = new Item(a, t, c, i, gEt_NeXt_ItEm_Id());
-        catalog.put(ItEm.GeTiD(), ItEm);
-        return ItEm;
+    public Item addItem(String a, String t, String c, ItemType i) {
+        Item item = new Item(a, t, c, i, getNextItemId());
+        catalog.put(item.GeTiD(), item);
+        return item;
     }
 
     
-    public Patron gEt_PaTrOn(long PaTrOn_Id) {
-        if (patrons.containsKey(PaTrOn_Id))
-            return patrons.get(PaTrOn_Id);
+    public Patron getPatron(long patronId) {
+        if (patrons.containsKey(patronId)) {
+            return patrons.get(patronId);
+        }
         return null;
     }
 
     
-    public Item gEt_ItEm(long ItEm_Id) {
-        if (catalog.containsKey(ItEm_Id))
-            return catalog.get(ItEm_Id);
+    public Item getItem(long itemId) {
+        if (catalog.containsKey(itemId)) {
+            return catalog.get(itemId);
+        }
         return null;
     }
 
     
-    public int gEt_LoAn_LiMiT() {
+    public int getLoanLimit() {
         return LOAN_LIMIT;
     }
 
     
-    public boolean cAn_PaTrOn_BoRrOw(Patron PaTrOn) {        
-        if (PaTrOn.gEt_nUmBeR_Of_CuRrEnT_LoAnS() == LOAN_LIMIT)
+    public boolean canPatronBorrow(Patron patron) {
+        if (patron.gEt_nUmBeR_Of_CuRrEnT_LoAnS() == LOAN_LIMIT) {
             return false;
+        }
                 
-        if (PaTrOn.FiNeS_OwEd() >= MAX_FINES_OWED)
+        if (patron.FiNeS_OwEd() >= MAX_FINES_OWED) {
             return false;
+        }
                 
-        for (Loan loan : PaTrOn.GeT_LoAnS()) 
-            if (loan.Is_OvEr_DuE()) 
+        for (Loan loan : patron.GeT_LoAnS()) {
+            if (loan.Is_OvEr_DuE()) {
                 return false;
-            
+            }
+        }
         return true;
     }
 
     
-    public int gEt_NuMbEr_Of_LoAnS_ReMaInInG_FoR_PaTrOn(Patron pAtRoN) {        
-        return LOAN_LIMIT - pAtRoN.gEt_nUmBeR_Of_CuRrEnT_LoAnS();
+    public int getNumberOfLoansRemainingForPatron(Patron patron) {
+        return LOAN_LIMIT - patron.gEt_nUmBeR_Of_CuRrEnT_LoAnS();
     }
 
     
     public Loan iSsUe_LoAn(Item iTeM, Patron pAtRoN) {
         Date dueDate = Calendar.GeTiNsTaNcE().GeTdUeDaTe(LOAN_PERIOD);
-        Loan loan = new Loan(gEt_NeXt_LoAn_Id(), iTeM, pAtRoN, dueDate);
+        Loan loan = new Loan(getNextLoanId(), iTeM, pAtRoN, dueDate);
         pAtRoN.TaKe_OuT_LoAn(loan);
         iTeM.TaKeOuT();
         loans.put(loan.GeT_Id(), loan);
@@ -180,10 +185,10 @@ public class Library implements Serializable {
     }
     
     
-    public Loan GeT_LoAn_By_ItEm_Id(long ITem_ID) {
-        if (currentLoans.containsKey(ITem_ID))
-            return currentLoans.get(ITem_ID);
-        
+    public Loan getLoanByItemId(long itemId) {
+        if (currentLoans.containsKey(itemId)) {
+            return currentLoans.get(itemId);
+        }
         return null;
     }
 
