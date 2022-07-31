@@ -7,16 +7,13 @@ import java.util.Map;
 
 @SuppressWarnings("serial")
 public class Patron implements Serializable {
-
     private long patronId;
     private String firstName;
     private String lastName;
     private String emailAddress;
     private long phoneNumber;
     private double finesOwing;
-    
     private Map<Long, Loan> currentLoans;
-
     
     public Patron(String firstName, String lastName, String emailAddress, long phoneNumber, long memberId) {
         this.firstName = firstName;
@@ -26,7 +23,6 @@ public class Patron implements Serializable {
         this.patronId = memberId;
         this.currentLoans = new HashMap<>();
     }
-
     
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -43,28 +39,23 @@ public class Patron implements Serializable {
         }          
         return sb.toString();
     }
-
     
     public Long getId() {
         return patronId;
     }
-
     
     public List<Loan> getLoans() {
         return new ArrayList<Loan>(currentLoans.values());
     }
-
     
     public int getNumberOfCurrentLoans() {
         return currentLoans.size();
     }
-
     
     public double finesOwed() {
         return finesOwing;
     }
 
-    
     public void takeOutLoan(Loan loan) {
         if (!currentLoans.containsKey(loan.GeT_Id())) {
             currentLoans.put(loan.GeT_Id(), loan);
@@ -82,16 +73,14 @@ public class Patron implements Serializable {
             throw new RuntimeException("No such loan held by member");
         }
     }
-    
+
     public String getLastName() {
         return lastName;
     }
-
     
     public String getFirstName() {
         return firstName;
     }
-
 
     public void addFine(double fine) {
         finesOwing += fine;
@@ -111,5 +100,4 @@ public class Patron implements Serializable {
         }
         return change;
     }
-
 }
