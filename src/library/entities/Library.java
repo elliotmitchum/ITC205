@@ -182,7 +182,8 @@ public class Library implements Serializable {
         item.TaKeOuT();
         long id = loan.GeT_Id();
         loans.put(id, loan);
-        currentLoans.put(item.GeTiD(), loan);
+        long itemId = item.GeTiD();
+        currentLoans.put(itemId, loan);
         return loan;
     }
     
