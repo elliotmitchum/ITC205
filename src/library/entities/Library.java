@@ -180,7 +180,8 @@ public class Library implements Serializable {
         Loan loan = new Loan(getNextLoanId(), item, patron, dueDate);
         patron.TaKe_OuT_LoAn(loan);
         item.TaKeOuT();
-        loans.put(loan.GeT_Id(), loan);
+        long id = loan.GeT_Id();
+        loans.put(id, loan);
         currentLoans.put(item.GeTiD(), loan);
         return loan;
     }
