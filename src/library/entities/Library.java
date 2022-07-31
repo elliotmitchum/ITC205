@@ -125,7 +125,8 @@ public class Library implements Serializable {
     
     public Item addItem(String author, String title, String callNumber, ItemType itemType) {
         Item item = new Item(author, title, callNumber, itemType, getNextItemId());
-        catalog.put(item.GeTiD(), item);
+        long id = item.GeTiD();
+        catalog.put(id, item);
         return item;
     }
 
