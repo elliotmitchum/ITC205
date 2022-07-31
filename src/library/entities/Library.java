@@ -220,7 +220,8 @@ public class Library implements Serializable {
             damagedItems.put(item.GeTiD(), item);
         }
         currentLoan.DiScHaRgE();
-        currentLoans.remove(item.GeTiD());
+        long itemId = item.GeTiD();
+        currentLoans.remove(itemId);
     }
 
 
