@@ -116,8 +116,8 @@ public class Library implements Serializable {
     }
 
 
-    public Patron addPatron(String firstName, String lastName, String email, long phoneNo) {
-        Patron patron = new Patron(firstName, lastName, email, phoneNo, getNextPatronId());
+    public Patron addPatron(String firstName, String lastName, String email, long phoneNumber) {
+        Patron patron = new Patron(firstName, lastName, email, phoneNumber, getNextPatronId());
         patrons.put(patron.GeT_ID(), patron);
         return patron;
     }
