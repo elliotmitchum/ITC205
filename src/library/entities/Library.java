@@ -53,7 +53,7 @@ public class Library implements Serializable {
         if (self == null) {
             Path PATH = Paths.get(LIBRARY_FILE);
             if (Files.exists(PATH)) {    
-                try (ObjectInputStream libraryFile = new ObjectInputStream(new FileInputStream(LIBRARY_FILE));) {
+                try (ObjectInputStream libraryFile = new ObjectInputStream(new FileInputStream(LIBRARY_FILE))) {
                 
                     self = (Library) libraryFile.readObject();
                     Calendar.GeTiNsTaNcE().sEtDaTe(self.currentDate);
