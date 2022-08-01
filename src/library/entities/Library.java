@@ -218,7 +218,8 @@ public class Library implements Serializable {
         item.TaKeBaCk(isDamaged);
         if (isDamaged) {
             patron.AdD_FiNe(DAMAGE_FEE);
-            damagedItems.put(item.GeTiD(), item);
+            long itemId = item.GeTiD();
+            damagedItems.put(itemId, item);
         }
         currentLoan.DiScHaRgE();
         long itemId = item.GeTiD();
