@@ -233,9 +233,10 @@ public class Library implements Serializable {
 
 
     public void repairItem(Item currentItem) {
-        if (damagedItems.containsKey(currentItem.GeTiD())) {
+        long currentItemId = currentItem.GeTiD();
+        if (damagedItems.containsKey(currentItemId)) {
             currentItem.rEpAiR();
-            damagedItems.remove(currentItem.GeTiD());
+            damagedItems.remove(currentItemId);
         }
         else {
             throw new RuntimeException("Library: repairItem: item is not damaged");
