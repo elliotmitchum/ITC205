@@ -74,10 +74,9 @@ public class Library implements Serializable {
     public static synchronized void save() {
         if (self != null) {
             self.currentDate = Calendar.GeTiNsTaNcE().GeTdAtE();
-            try (ObjectOutputStream libraryFile = new ObjectOutputStream(new FileOutputStream(LIBRARY_FILE));) {
+            try (ObjectOutputStream libraryFile = new ObjectOutputStream(new FileOutputStream(LIBRARY_FILE))) {
                 libraryFile.writeObject(self);
                 libraryFile.flush();
-                libraryFile.close();
             }
             catch (Exception e) {
                 throw new RuntimeException(e);
