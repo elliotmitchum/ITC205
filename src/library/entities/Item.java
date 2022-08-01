@@ -28,6 +28,7 @@ public class Item implements Serializable {
         this.state = ItemState.AVAILABLE;
     }
 
+
     public String toString() {
         StringBuilder output = new StringBuilder();
         output.append("Item: ").append(id).append("\n")
@@ -39,29 +40,36 @@ public class Item implements Serializable {
         return output.toString();
     }
 
+
     public Long getId() {
         return id;
     }
+
 
     public String getTitle() {
         return title;
     }
 
+
     public ItemType getType() {
         return type;
     }
+
 
     public boolean isAvailable() {
         return state == ItemState.AVAILABLE;
     }
 
+
     public boolean isOnLoan() {
         return state == ItemState.ON_LOAN;
     }
 
+
     public boolean isDamaged() {
         return state == ItemState.DAMAGED;
     }
+
 
     public void takeout() {
         if (state.equals(ItemState.AVAILABLE)) {
@@ -72,6 +80,7 @@ public class Item implements Serializable {
             throw new RuntimeException(message);
         }
     }
+
 
     public void takeback(boolean damaged) {
         if (state.equals(ItemState.ON_LOAN)) {
@@ -88,6 +97,7 @@ public class Item implements Serializable {
         }
     }
 
+
     public void repair() {
         if (state.equals(ItemState.DAMAGED)) {
             state = ItemState.AVAILABLE;
@@ -97,5 +107,6 @@ public class Item implements Serializable {
             throw new RuntimeException(message);
         }
     }
+
 
 }
