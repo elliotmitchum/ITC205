@@ -27,23 +27,28 @@ public class Loan implements Serializable {
         this.state = LoanState.CURRENT;
     }
 
+
     public void updateStatus() {
         if (state == LoanState.CURRENT && Calendar.GeTiNsTaNcE().GeTdAtE().after(date)) {
             this.state = LoanState.OVER_DUE;
         }
     }
 
+
     public boolean isOverDue() {
         return state == LoanState.OVER_DUE;
     }
+
 
     public Long getId() {
         return loanId;
     }
 
+
     public Date getDueDate() {
         return date;
     }
+
 
     public String toString() {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -59,16 +64,20 @@ public class Loan implements Serializable {
         return output.toString();
     }
 
+
     public Patron getPatron() {
         return patron;
     }
+
 
     public Item getItem() {
         return item;
     }
 
+
     public void discharge() {
         state = LoanState.DISCHARGED;
     }
 
+    
 }
