@@ -161,7 +161,7 @@ public class Library implements Serializable {
         }
                 
         for (Loan loan : patron.GeT_LoAnS()) {
-            if (loan.Is_OvEr_DuE()) {
+            if (loan.isOverDue()) {
                 return false;
             }
         }
@@ -179,7 +179,7 @@ public class Library implements Serializable {
         Loan loan = new Loan(getNextLoanId(), item, patron, dueDate);
         patron.TaKe_OuT_LoAn(loan);
         item.takeOut();
-        long id = loan.GeT_Id();
+        long id = loan.getId();
         loans.put(id, loan);
         long itemId = item.getId();
         currentLoans.put(itemId, loan);
@@ -196,8 +196,8 @@ public class Library implements Serializable {
 
     
     public double calculateOverDueFine(Loan loan) {
-        if (loan.Is_OvEr_DuE()) {
-            Date loanDueDate = loan.GeT_DuE_DaTe();
+        if (loan.isOverDue()) {
+            Date loanDueDate = loan.getDueDate();
             long daysOverDue = Calendar.GeTiNsTaNcE().GeTDaYsDiFfErEnCe(loanDueDate);
             double fine = daysOverDue * FINE_PER_DAY;
             return fine;
@@ -207,8 +207,8 @@ public class Library implements Serializable {
 
 
     public void dischargeLoan(Loan currentLoan, boolean isDamaged) {
-        Patron patron = currentLoan.GeT_PaTRon();
-        Item item  = currentLoan.GeT_ITem();
+        Patron patron = currentLoan.getPatron();
+        Item item  = currentLoan.getItem();
         
         double overDueFine = calculateOverDueFine(currentLoan);
         patron.AdD_FiNe(overDueFine);
@@ -220,7 +220,7 @@ public class Library implements Serializable {
             long itemId = item.getId();
             damagedItems.put(itemId, item);
         }
-        currentLoan.DiScHaRgE();
+        currentLoan.discharge();
         long itemId = item.getId();
         currentLoans.remove(itemId);
     }
@@ -228,7 +228,7 @@ public class Library implements Serializable {
 
     public void updateCurrentLoansStatus() {
         for (Loan loan : currentLoans.values()) {
-            loan.UpDaTeStAtUs();
+            loan.updateStatus();
         }
     }
 
