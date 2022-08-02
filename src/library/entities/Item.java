@@ -5,7 +5,7 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 public class Item implements Serializable {
 
-    private ItemType type;
+    private ItemType itemType;
 
     private String author;
 
@@ -20,7 +20,7 @@ public class Item implements Serializable {
     private ItemState state;
 
     public Item(String author, String title, String callNumber, ItemType itemType, long id) {
-        this.type = itemType;
+        this.itemType = itemType;
         this.author = author;
         this.title = title;
         this.callNumber = callNumber;
@@ -32,7 +32,7 @@ public class Item implements Serializable {
     public String toString() {
         StringBuilder output = new StringBuilder();
         output.append("Item: ").append(id).append("\n")
-            .append("  Type:   ").append(type).append("\n")
+            .append("  Type:   ").append(itemType).append("\n")
             .append("  Title:  ").append(title).append("\n")
             .append("  Author: ").append(author).append("\n")
             .append("  CallNo: ").append(callNumber).append("\n")
@@ -51,8 +51,8 @@ public class Item implements Serializable {
     }
 
 
-    public ItemType getType() {
-        return type;
+    public ItemType getItemType() {
+        return itemType;
     }
 
 
