@@ -124,7 +124,7 @@ public class Library implements Serializable {
     
     public Item addItem(String author, String title, String callNumber, ItemType itemType) {
         Item item = new Item(author, title, callNumber, itemType, getNextItemId());
-        long id = item.GeTiD();
+        long id = item.getId();
         catalog.put(id, item);
         return item;
     }
@@ -178,10 +178,10 @@ public class Library implements Serializable {
         Date dueDate = Calendar.GeTiNsTaNcE().GeTdUeDaTe(LOAN_PERIOD);
         Loan loan = new Loan(getNextLoanId(), item, patron, dueDate);
         patron.TaKe_OuT_LoAn(loan);
-        item.TaKeOuT();
+        item.takeOut();
         long id = loan.getId();
         loans.put(id, loan);
-        long itemId = item.GeTiD();
+        long itemId = item.getId();
         currentLoans.put(itemId, loan);
         return loan;
     }
@@ -214,14 +214,14 @@ public class Library implements Serializable {
         patron.AdD_FiNe(overDueFine);
         
         patron.dIsChArGeLoAn(currentLoan);
-        item.TaKeBaCk(isDamaged);
+        item.takeBack(isDamaged);
         if (isDamaged) {
             patron.AdD_FiNe(DAMAGE_FEE);
-            long itemId = item.GeTiD();
+            long itemId = item.getId();
             damagedItems.put(itemId, item);
         }
         currentLoan.discharge();
-        long itemId = item.GeTiD();
+        long itemId = item.getId();
         currentLoans.remove(itemId);
     }
 
@@ -234,9 +234,9 @@ public class Library implements Serializable {
 
 
     public void repairItem(Item currentItem) {
-        long currentItemId = currentItem.GeTiD();
+        long currentItemId = currentItem.getId();
         if (damagedItems.containsKey(currentItemId)) {
-            currentItem.rEpAiR();
+            currentItem.repair();
             damagedItems.remove(currentItemId);
         }
         else {
