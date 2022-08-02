@@ -11,6 +11,7 @@ public class Calendar {
     private Calendar() {
         calendar = java.util.Calendar.getInstance();
     }
+
     
     public static Calendar getInstance() {
         if (self == null) {
@@ -18,10 +19,12 @@ public class Calendar {
         }
         return self;
     }
-    
+
+
     public void incrementDate(int days) {
         calendar.add(java.util.Calendar.DATE, days);
     }
+
 
     public synchronized void setDate(Date date) {
         try {
@@ -35,6 +38,8 @@ public class Calendar {
             throw new RuntimeException(e);
         }    
     }
+
+
     public synchronized Date getDate() {
         try {
             calendar.set(java.util.Calendar.HOUR_OF_DAY, 0);
@@ -48,6 +53,7 @@ public class Calendar {
         }    
     }
 
+
     public synchronized Date getDueDate(int loanPeriod) {
         Date now = getDate();
         calendar.add(java.util.Calendar.DATE, loanPeriod);
@@ -55,7 +61,8 @@ public class Calendar {
         calendar.setTime(now);
         return dueDate;
     }
-    
+
+
     public synchronized long getDaysOfDifference(Date targetDate) {
         long diffMillis = getDate().getTime() - targetDate.getTime();
         long diffDays = TimeUnit.DAYS.convert(diffMillis, TimeUnit.MILLISECONDS);
