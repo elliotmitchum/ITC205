@@ -15,7 +15,7 @@ public class Loan implements Serializable {
 
     private Patron patron;
 
-    private Date date;
+    private Date dueDate;
 
     private LoanState state;
 
@@ -23,13 +23,13 @@ public class Loan implements Serializable {
         this.loanId = loanId;
         this.item = item;
         this.patron = patron;
-        this.date = dueDate;
+        this.dueDate = dueDate;
         this.state = LoanState.CURRENT;
     }
 
 
     public void updateStatus() {
-        if (state == LoanState.CURRENT && Calendar.GeTiNsTaNcE().GeTdAtE().after(date)) {
+        if (state == LoanState.CURRENT && Calendar.GeTiNsTaNcE().GeTdAtE().after(dueDate)) {
             this.state = LoanState.OVER_DUE;
         }
     }
@@ -46,7 +46,7 @@ public class Loan implements Serializable {
 
 
     public Date getDueDate() {
-        return date;
+        return dueDate;
     }
 
 
@@ -59,7 +59,7 @@ public class Loan implements Serializable {
             .append("  Item ").append(item.GeTiD()).append(" : ")
             .append(item.GeTtYpE()).append("\n")
             .append(item.GeTtItLe()).append("\n")
-            .append("  DueDate: ").append(dateFormat.format(date)).append("\n")
+            .append("  DueDate: ").append(dateFormat.format(dueDate)).append("\n")
             .append("  State: ").append(state);
         return output.toString();
     }
