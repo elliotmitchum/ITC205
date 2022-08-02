@@ -56,7 +56,7 @@ public class Library implements Serializable {
                 try (ObjectInputStream libraryFile = new ObjectInputStream(new FileInputStream(LIBRARY_FILE))) {
                 
                     self = (Library) libraryFile.readObject();
-                    Calendar.getInstance().setDate(self.currentDate);
+                    Calendar.GeTiNsTaNcE().sEtDaTe(self.currentDate);
                     libraryFile.close();
                 }
                 catch (Exception e) {
@@ -73,7 +73,7 @@ public class Library implements Serializable {
     
     public static synchronized void save() {
         if (self != null) {
-            self.currentDate = Calendar.getInstance().getDate();
+            self.currentDate = Calendar.GeTiNsTaNcE().GeTdAtE();
             try (ObjectOutputStream libraryFile = new ObjectOutputStream(new FileOutputStream(LIBRARY_FILE))) {
                 libraryFile.writeObject(self);
                 libraryFile.flush();
@@ -124,7 +124,7 @@ public class Library implements Serializable {
     
     public Item addItem(String author, String title, String callNumber, ItemType itemType) {
         Item item = new Item(author, title, callNumber, itemType, getNextItemId());
-        long id = item.GeTiD();
+        long id = item.getId();
         catalog.put(id, item);
         return item;
     }
@@ -161,7 +161,7 @@ public class Library implements Serializable {
         }
                 
         for (Loan loan : patron.GeT_LoAnS()) {
-            if (loan.Is_OvEr_DuE()) {
+            if (loan.isOverDue()) {
                 return false;
             }
         }
@@ -175,13 +175,13 @@ public class Library implements Serializable {
 
     
     public Loan issueLoan(Item item, Patron patron) {
-        Date dueDate = Calendar.getInstance().getDueDate(LOAN_PERIOD);
+        Date dueDate = Calendar.GeTiNsTaNcE().GeTdUeDaTe(LOAN_PERIOD);
         Loan loan = new Loan(getNextLoanId(), item, patron, dueDate);
         patron.TaKe_OuT_LoAn(loan);
-        item.TaKeOuT();
-        long id = loan.GeT_Id();
+        item.takeOut();
+        long id = loan.getId();
         loans.put(id, loan);
-        long itemId = item.GeTiD();
+        long itemId = item.getId();
         currentLoans.put(itemId, loan);
         return loan;
     }
@@ -196,9 +196,9 @@ public class Library implements Serializable {
 
     
     public double calculateOverDueFine(Loan loan) {
-        if (loan.Is_OvEr_DuE()) {
-            Date loanDueDate = loan.GeT_DuE_DaTe();
-            long daysOverDue = Calendar.getInstance().getDaysOfDifference(loanDueDate);
+        if (loan.isOverDue()) {
+            Date loanDueDate = loan.getDueDate();
+            long daysOverDue = Calendar.GeTiNsTaNcE().GeTDaYsDiFfErEnCe(loanDueDate);
             double fine = daysOverDue * FINE_PER_DAY;
             return fine;
         }
@@ -207,36 +207,36 @@ public class Library implements Serializable {
 
 
     public void dischargeLoan(Loan currentLoan, boolean isDamaged) {
-        Patron patron = currentLoan.GeT_PaTRon();
-        Item item  = currentLoan.GeT_ITem();
+        Patron patron = currentLoan.getPatron();
+        Item item  = currentLoan.getItem();
         
         double overDueFine = calculateOverDueFine(currentLoan);
         patron.AdD_FiNe(overDueFine);
         
         patron.dIsChArGeLoAn(currentLoan);
-        item.TaKeBaCk(isDamaged);
+        item.takeBack(isDamaged);
         if (isDamaged) {
             patron.AdD_FiNe(DAMAGE_FEE);
-            long itemId = item.GeTiD();
+            long itemId = item.getId();
             damagedItems.put(itemId, item);
         }
-        currentLoan.DiScHaRgE();
-        long itemId = item.GeTiD();
+        currentLoan.discharge();
+        long itemId = item.getId();
         currentLoans.remove(itemId);
     }
 
 
     public void updateCurrentLoansStatus() {
         for (Loan loan : currentLoans.values()) {
-            loan.UpDaTeStAtUs();
+            loan.updateStatus();
         }
     }
 
 
     public void repairItem(Item currentItem) {
-        long currentItemId = currentItem.GeTiD();
+        long currentItemId = currentItem.getId();
         if (damagedItems.containsKey(currentItemId)) {
-            currentItem.rEpAiR();
+            currentItem.repair();
             damagedItems.remove(currentItemId);
         }
         else {
