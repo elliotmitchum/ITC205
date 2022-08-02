@@ -71,7 +71,7 @@ public class Item implements Serializable {
     }
 
 
-    public void takeout() {
+    public void takeOut() {
         if (state.equals(ItemState.AVAILABLE)) {
             state = ItemState.ON_LOAN;
         }
