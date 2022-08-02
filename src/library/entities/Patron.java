@@ -15,6 +15,7 @@ public class Patron implements Serializable {
     private double finesOwing;
     private Map<Long, Loan> currentLoans;
     
+    
     public Patron(String firstName, String lastName, String emailAddress, long phoneNumber, long memberId) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -23,6 +24,7 @@ public class Patron implements Serializable {
         this.patronId = memberId;
         this.currentLoans = new HashMap<>();
     }
+
     
     public String toString() {
         StringBuilder sb = new StringBuilder();
@@ -39,22 +41,27 @@ public class Patron implements Serializable {
         }          
         return sb.toString();
     }
-    
+
+
     public Long getId() {
         return patronId;
     }
-    
+
+
     public List<Loan> getLoans() {
         return new ArrayList<Loan>(currentLoans.values());
     }
-    
+
+
     public int getNumberOfCurrentLoans() {
         return currentLoans.size();
     }
-    
+
+
     public double finesOwed() {
         return finesOwing;
     }
+
 
     public void takeOutLoan(Loan loan) {
         if (!currentLoans.containsKey(loan.GeT_Id())) {
@@ -65,6 +72,7 @@ public class Patron implements Serializable {
         }
     }
 
+
     public void dischargeLoan(Loan loan) {
         if (currentLoans.containsKey(loan.GeT_Id())) {
             currentLoans.remove(loan.GeT_Id());
@@ -74,18 +82,22 @@ public class Patron implements Serializable {
         }
     }
 
+
     public String getLastName() {
         return lastName;
     }
-    
+
+
     public String getFirstName() {
         return firstName;
     }
 
+
     public void addFine(double fine) {
         finesOwing += fine;
     }
-    
+
+
     public double payFine(double amount) {
         if (amount < 0) {
             throw new RuntimeException("Member.payFine: amount must be positive");
