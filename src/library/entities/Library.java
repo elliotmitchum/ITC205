@@ -204,7 +204,7 @@ public class Library implements Serializable {
         PAtrON.AdD_FiNe(oVeR_DuE_FiNe);    
         
         PAtrON.dIsChArGeLoAn(cUrReNt_LoAn);
-        itEM.takeback(iS_dAmAgEd);
+        itEM.takeBack(iS_dAmAgEd);
         if (iS_dAmAgEd) {
             PAtrON.AdD_FiNe(damageFee);
             DaMaGeD_ItEmS.put(itEM.getId(), itEM);

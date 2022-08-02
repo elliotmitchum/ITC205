@@ -82,7 +82,7 @@ public class Item implements Serializable {
     }
 
 
-    public void takeback(boolean damaged) {
+    public void takeBack(boolean damaged) {
         if (state.equals(ItemState.ON_LOAN)) {
             if (damaged) {
                 state = ItemState.DAMAGED;
