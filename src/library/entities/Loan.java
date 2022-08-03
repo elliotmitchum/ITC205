@@ -29,7 +29,7 @@ public class Loan implements Serializable {
 
 
     public void updateStatus() {
-        if (state == LoanState.CURRENT && Calendar.GeTiNsTaNcE().GeTdAtE().after(dueDate)) {
+        if (state == LoanState.CURRENT && Calendar.getInstance().getDate().after(dueDate)) {
             this.state = LoanState.OVER_DUE;
         }
     }

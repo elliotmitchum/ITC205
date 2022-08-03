@@ -56,7 +56,7 @@ public class Library implements Serializable {
                 try (ObjectInputStream libraryFile = new ObjectInputStream(new FileInputStream(LIBRARY_FILE))) {
                 
                     self = (Library) libraryFile.readObject();
-                    Calendar.GeTiNsTaNcE().sEtDaTe(self.currentDate);
+                    Calendar.getInstance().setDate(self.currentDate);
                     libraryFile.close();
                 }
                 catch (Exception e) {
@@ -73,7 +73,7 @@ public class Library implements Serializable {
     
     public static synchronized void save() {
         if (self != null) {
-            self.currentDate = Calendar.GeTiNsTaNcE().GeTdAtE();
+            self.currentDate = Calendar.getInstance().getDate();
             try (ObjectOutputStream libraryFile = new ObjectOutputStream(new FileOutputStream(LIBRARY_FILE))) {
                 libraryFile.writeObject(self);
                 libraryFile.flush();
@@ -175,7 +175,7 @@ public class Library implements Serializable {
 
     
     public Loan issueLoan(Item item, Patron patron) {
-        Date dueDate = Calendar.GeTiNsTaNcE().GeTdUeDaTe(LOAN_PERIOD);
+        Date dueDate = Calendar.getInstance().getDueDate(LOAN_PERIOD);
         Loan loan = new Loan(getNextLoanId(), item, patron, dueDate);
         patron.TaKe_OuT_LoAn(loan);
         item.takeOut();
@@ -198,7 +198,7 @@ public class Library implements Serializable {
     public double calculateOverDueFine(Loan loan) {
         if (loan.isOverDue()) {
             Date loanDueDate = loan.getDueDate();
-            long daysOverDue = Calendar.GeTiNsTaNcE().GeTDaYsDiFfErEnCe(loanDueDate);
+            long daysOverDue = Calendar.getInstance().getDaysOfDifference(loanDueDate);
             double fine = daysOverDue * FINE_PER_DAY;
             return fine;
         }
