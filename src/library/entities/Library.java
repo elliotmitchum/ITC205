@@ -117,7 +117,7 @@ public class Library implements Serializable {
 
     public Patron addPatron(String firstName, String lastName, String email, long phoneNumber) {
         Patron patron = new Patron(firstName, lastName, email, phoneNumber, getNextPatronId());
-        patrons.put(patron.GeT_ID(), patron);
+        patrons.put(patron.getId(), patron);
         return patron;
     }
 
@@ -152,15 +152,15 @@ public class Library implements Serializable {
 
     
     public boolean canPatronBorrow(Patron patron) {
-        if (patron.gEt_nUmBeR_Of_CuRrEnT_LoAnS() == LOAN_LIMIT) {
+        if (patron.getNumberOfCurrentLoans() == LOAN_LIMIT) {
             return false;
         }
                 
-        if (patron.FiNeS_OwEd() >= MAX_FINES_OWED) {
+        if (patron.finesOwed() >= MAX_FINES_OWED) {
             return false;
         }
                 
-        for (Loan loan : patron.GeT_LoAnS()) {
+        for (Loan loan : patron.getLoans()) {
             if (loan.isOverDue()) {
                 return false;
             }
@@ -170,14 +170,14 @@ public class Library implements Serializable {
 
     
     public int getNumberOfLoansRemainingForPatron(Patron patron) {
-        return LOAN_LIMIT - patron.gEt_nUmBeR_Of_CuRrEnT_LoAnS();
+        return LOAN_LIMIT - patron.getNumberOfCurrentLoans();
     }
 
     
     public Loan issueLoan(Item item, Patron patron) {
         Date dueDate = Calendar.getInstance().getDueDate(LOAN_PERIOD);
         Loan loan = new Loan(getNextLoanId(), item, patron, dueDate);
-        patron.TaKe_OuT_LoAn(loan);
+        patron.takeOutLoan(loan);
         item.takeOut();
         long id = loan.getId();
         loans.put(id, loan);
@@ -211,12 +211,12 @@ public class Library implements Serializable {
         Item item  = currentLoan.getItem();
         
         double overDueFine = calculateOverDueFine(currentLoan);
-        patron.AdD_FiNe(overDueFine);
+        patron.addFine(overDueFine);
         
-        patron.dIsChArGeLoAn(currentLoan);
+        patron.dischargeloan(currentLoan);
         item.takeBack(isDamaged);
         if (isDamaged) {
-            patron.AdD_FiNe(DAMAGE_FEE);
+            patron.addFine(DAMAGE_FEE);
             long itemId = item.getId();
             damagedItems.put(itemId, item);
         }
