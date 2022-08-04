@@ -28,8 +28,8 @@ public class Patron implements Serializable {
 
     
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Patron:  ").append(patronId).append("\n")
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append("Patron:  ").append(patronId).append("\n")
           .append("  Name:  ").append(firstName).append(" ").append(lastName).append("\n")
           .append("  Email: ").append(emailAddress).append("\n")
           .append("  Phone: ").append(phoneNumber)
@@ -38,9 +38,9 @@ public class Patron implements Serializable {
           .append("\n");
         
         for (Loan LoAn : currentLoans.values()) {
-            sb.append(LoAn).append("\n");
+            stringBuilder.append(LoAn).append("\n");
         }          
-        return sb.toString();
+        return stringBuilder.toString();
     }
 
     
