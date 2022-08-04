@@ -37,8 +37,8 @@ public class Patron implements Serializable {
           .append(String.format("  Fines Owed :  $%.2f", finesOwing))
           .append("\n");
         
-        for (Loan LoAn : currentLoans.values()) {
-            stringBuilder.append(LoAn).append("\n");
+        for (Loan loan : currentLoans.values()) {
+            stringBuilder.append(loan).append("\n");
         }          
         return stringBuilder.toString();
     }
