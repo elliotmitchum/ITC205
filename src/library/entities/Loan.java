@@ -54,8 +54,8 @@ public class Loan implements Serializable {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         StringBuilder output = new StringBuilder();
         output.append("Loan:  ").append(loanId).append("\n")
-            .append("  Borrower ").append(patron.GeT_ID()).append(" : ")
-            .append(patron.GeT_FiRsT_NaMe()).append(" ").append(patron.GeT_LaSt_NaMe()).append("\n")
+            .append("  Borrower ").append(patron.getId()).append(" : ")
+            .append(patron.getFirstName()).append(" ").append(patron.getLastName()).append("\n")
             .append("  Item ").append(item.getId()).append(" : ")
             .append(item.getItemType()).append("\n")
             .append(item.getTitle()).append("\n")
