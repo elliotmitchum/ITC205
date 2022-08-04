@@ -156,7 +156,7 @@ public class Library implements Serializable {
             return false;
         }
                 
-        if (patron.finesOwed() >= MAX_FINES_OWED) {
+        if (patron.getFinesOwed() >= MAX_FINES_OWED) {
             return false;
         }
                 
