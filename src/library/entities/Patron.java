@@ -75,9 +75,10 @@ public class Patron implements Serializable {
     }
 
 
-    public void dischargeloan(Loan loan) {
-        if (currentLoans.containsKey(loan.getId())) {
-            currentLoans.remove(loan.getId());
+    public void dischargeLoan(Loan loan) {
+        Long loanId = loan.getId();
+        if (currentLoans.containsKey(loanId)) {
+            currentLoans.remove(loanId);
         }
         else {
             throw new RuntimeException("No such loan held by member");

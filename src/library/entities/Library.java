@@ -213,7 +213,7 @@ public class Library implements Serializable {
         double overDueFine = calculateOverDueFine(currentLoan);
         patron.addFine(overDueFine);
         
-        patron.dischargeloan(currentLoan);
+        patron.dischargeLoan(currentLoan);
         item.takeBack(isDamaged);
         if (isDamaged) {
             patron.addFine(DAMAGE_FEE);
