@@ -11,7 +11,7 @@ public class BorrowItemControl {
     private BorrowItemUI ui;
     private Library library;
     private Patron patron;
-    private enum ControlState { INITIALISED, READY, RESTRICTED, SCANNING, IDENTIFIED, FINALISING, COMPLETED, CANCELLED };
+    private enum ControlState { INITIALISED, READY, RESTRICTED, SCANNING, IDENTIFIED, FINALISING, COMPLETED, CANCELLED }
     private ControlState state;
     private List<Item> pendingList;
     private List<Loan> completeList;
