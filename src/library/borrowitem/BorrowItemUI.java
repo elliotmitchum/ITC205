@@ -67,7 +67,7 @@ public class BorrowItemUI {
             case SCANNING:
                 String Item_StRiNg_InPuT = GeTiNpUt("Scan Item (<enter> completes): ");
                 if (Item_StRiNg_InPuT.length() == 0) {
-                    CoNtRoL.BoRrOwInGcOmPlEtEd();
+                    CoNtRoL.borrowingCompleted();
                     break;
                 }
                 try {
