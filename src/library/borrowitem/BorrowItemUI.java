@@ -72,7 +72,7 @@ public class BorrowItemUI {
                 }
                 try {
                     int IiD = Integer.valueOf(Item_StRiNg_InPuT).intValue();
-                    CoNtRoL.ItEmScAnNeD(IiD);
+                    CoNtRoL.itemScanned(IiD);
                     
                 } catch (NumberFormatException e) {
                     DiSpLaYoUtPuT("Invalid Item Id");

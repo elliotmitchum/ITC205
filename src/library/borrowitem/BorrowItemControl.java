@@ -58,12 +58,12 @@ public class BorrowItemControl {
     }
     
     
-    public void ItEmScAnNeD(int ItEmiD) {
+    public void itemScanned(int itemId) {
         item = null;
-        if (!state.equals(ControlState.SCANNING))
+        if (!state.equals(ControlState.SCANNING)) {
             throw new RuntimeException("BorrowItemControl: cannot call itemScanned except in SCANNING state");
-            
-        item = library.getItem(ItEmiD);
+        }
+        item = library.getItem(itemId);
         if (item == null) {
             ui.DiSpLaY("Invalid itemId");
             return;
@@ -73,9 +73,9 @@ public class BorrowItemControl {
             return;
         }
         pendingList.add(item);
-        for (Item ItEm : pendingList)
-            ui.DiSpLaY(ItEm);
-        
+        for (Item item : pendingList) {
+            ui.DiSpLaY(item);
+        }
         if (library.getNumberOfLoansRemainingForPatron(patron) - pendingList.size() == 0) {
             ui.DiSpLaY("Loan limit reached");
             BoRrOwInGcOmPlEtEd();
