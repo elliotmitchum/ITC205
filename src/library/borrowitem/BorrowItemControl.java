@@ -8,14 +8,11 @@ import library.entities.Loan;
 import library.entities.Patron;
 
 public class BorrowItemControl {
-    
     private BorrowItemUI ui;
-    
     private Library library;
     private Patron patron;
     private enum ControlState { INITIALISED, READY, RESTRICTED, SCANNING, IDENTIFIED, FINALISING, COMPLETED, CANCELLED };
     private ControlState state;
-    
     private List<Item> pendingList;
     private List<Loan> completeList;
     private Item item;
@@ -27,7 +24,7 @@ public class BorrowItemControl {
     }
     
 
-    public void setUi(BorrowItemUI ui) {
+    public void setUI(BorrowItemUI ui) {
         if (!state.equals(ControlState.INITIALISED)) {
             throw new RuntimeException("BorrowItemControl: cannot call setUI except in INITIALISED state");
         }
@@ -58,7 +55,7 @@ public class BorrowItemControl {
     }
     
     
-    public void itemScanned(int itemId) {
+    public void itemScanned(long itemId) {
         item = null;
         if (!state.equals(ControlState.SCANNING)) {
             throw new RuntimeException("BorrowItemControl: cannot call itemScanned except in SCANNING state");
