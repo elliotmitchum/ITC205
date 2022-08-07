@@ -50,7 +50,7 @@ public class BorrowItemUI {
                 }
                 try {
                     long PaTrOn_Id = Long.valueOf(PAT_STR).longValue();
-                    CoNtRoL.CaRdSwIpEd(PaTrOn_Id);
+                    CoNtRoL.cardSwiped(PaTrOn_Id);
                 }
                 catch (NumberFormatException e) {
                     DiSpLaYoUtPuT("Invalid Patron Id");
