@@ -86,7 +86,7 @@ public class BorrowItemUI {
                     CoNtRoL.CaNcEl();
                     
                 } else {
-                    CoNtRoL.CoMmIt_LoAnS();
+                    CoNtRoL.commitLoans();
                     GeTiNpUt("Press <any key> to complete ");
                 }
                 break;

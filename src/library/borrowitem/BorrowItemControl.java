@@ -99,18 +99,18 @@ public class BorrowItemControl {
     }
 
 
-    public void CoMmIt_LoAnS() {
-        if (!state.equals(ControlState.FINALISING))
+    public void commitLoans() {
+        if (!state.equals(ControlState.FINALISING)) {
             throw new RuntimeException("BorrowItemControl: cannot call commitLoans except in FINALISING state");
-            
-        for (Item B : pendingList) {
-            Loan lOaN = library.issueLoan(B, patron);
-            completeList.add(lOaN);
+        }
+        for (Item item : pendingList) {
+            Loan loan = library.issueLoan(item, patron);
+            completeList.add(loan);
         }
         ui.DiSpLaY("Completed Loan Slip");
-        for (Loan LOAN : completeList)
-            ui.DiSpLaY(LOAN);
-        
+        for (Loan loan : completeList) {
+            ui.DiSpLaY(loan);
+        }
         ui.setCompleted();
         state = ControlState.COMPLETED;
     }
