@@ -85,7 +85,7 @@ public class BorrowItemControl {
     
     public void borrowingCompleted() {
         if (pendingList.size() == 0) {
-            CaNcEl();
+            cancel();
         }
         else {
             ui.DiSpLaY("\nFinal Borrowing List");
@@ -116,10 +116,8 @@ public class BorrowItemControl {
     }
 
     
-    public void CaNcEl() {
+    public void cancel() {
         ui.setCancelled();
         state = ControlState.CANCELLED;
     }
-    
-    
 }
