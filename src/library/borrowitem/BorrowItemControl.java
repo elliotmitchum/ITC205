@@ -37,11 +37,11 @@ public class BorrowItemControl {
     }
 
         
-    public void CaRdSwIpEd(long PaTrOn_Id) {
-        if (!state.equals(CONTROL_STATE.READY))
+    public void cardSwiped(long patronId) {
+        if (!state.equals(CONTROL_STATE.READY)) {
             throw new RuntimeException("BorrowItemControl: cannot call cardSwiped except in READY state");
-            
-        patron = library.getPatron(PaTrOn_Id);
+        }
+        patron = library.getPatron(patronId);
         if (patron == null) {
             ui.DiSpLaY("Invalid patronId");
             return;
