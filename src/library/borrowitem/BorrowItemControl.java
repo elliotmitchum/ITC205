@@ -78,21 +78,21 @@ public class BorrowItemControl {
         }
         if (library.getNumberOfLoansRemainingForPatron(patron) - pendingList.size() == 0) {
             ui.DiSpLaY("Loan limit reached");
-            BoRrOwInGcOmPlEtEd();
+            borrowingCompleted();
         }
     }
     
     
-    public void BoRrOwInGcOmPlEtEd() {
-        if (pendingList.size() == 0)
+    public void borrowingCompleted() {
+        if (pendingList.size() == 0) {
             CaNcEl();
-        
+        }
         else {
             ui.DiSpLaY("\nFinal Borrowing List");
-            for (Item ItEm : pendingList)
-                ui.DiSpLaY(ItEm);
-            
-            completedList = new ArrayList<Loan>();
+            for (Item item : pendingList) {
+                ui.DiSpLaY(item);
+            }
+            completedList = new ArrayList<>();
             ui.setFinalising();
             state = CONTROL_STATE.FINALISING;
         }
