@@ -45,7 +45,7 @@ public class BorrowItemUI {
             case READY:
                 String PAT_STR = GeTiNpUt("Swipe patron card (press <enter> to cancel): ");
                 if (PAT_STR.length() == 0) {
-                    CoNtRoL.CaNcEl();
+                    CoNtRoL.cancel();
                     break;
                 }
                 try {
@@ -60,7 +60,7 @@ public class BorrowItemUI {
                 
             case RESTRICTED:
                 GeTiNpUt("Press <any key> to cancel");
-                CoNtRoL.CaNcEl();
+                CoNtRoL.cancel();
                 break;
             
                 
@@ -83,7 +83,7 @@ public class BorrowItemUI {
             case FINALISING:
                 String AnS = GeTiNpUt("Commit loans? (Y/N): ");
                 if (AnS.toUpperCase().equals("N")) {
-                    CoNtRoL.CaNcEl();
+                    CoNtRoL.cancel();
                     
                 } else {
                     CoNtRoL.commitLoans();
