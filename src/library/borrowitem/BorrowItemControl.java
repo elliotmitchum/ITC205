@@ -27,12 +27,12 @@ public class BorrowItemControl {
     }
     
 
-    public void SeT_Ui(BorrowItemUI Ui) {
-        if (!state.equals(CONTROL_STATE.INITIALISED))
+    public void setUI(BorrowItemUI ui) {
+        if (!state.equals(CONTROL_STATE.INITIALISED)) {
             throw new RuntimeException("BorrowItemControl: cannot call setUI except in INITIALISED state");
-            
-        this.ui = Ui;
-        ui.setReady();
+        }
+        this.ui = ui;
+        this.ui.setReady();
         state = CONTROL_STATE.READY;
     }
 
