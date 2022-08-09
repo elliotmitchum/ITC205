@@ -30,76 +30,71 @@ public class BorrowItemUI {
     }
     
                 
-    public void RuN() {
+    public void run() {
         displayOutput("Borrow Item Use Case UI\n");
         
         while (true) {
             
             switch (uiState) {
             
-            case CANCELLED:
-                displayOutput("Borrowing Cancelled");
-                return;
+                case CANCELLED:
+                    displayOutput("Borrowing Cancelled");
+                    return;
 
-                
-            case READY:
-                String PAT_STR = getInput("Swipe patron card (press <enter> to cancel): ");
-                if (PAT_STR.length() == 0) {
+                case READY:
+                    String patronStart = getInput("Swipe patron card (press <enter> to cancel): ");
+                    if (patronStart.length() == 0) {
+                        control.cancel();
+                        break;
+                    }
+                    try {
+                        long patronId = Long.valueOf(patronStart).longValue();
+                        control.cardSwiped(patronId);
+                    }
+                    catch (NumberFormatException exception) {
+                        displayOutput("Invalid Patron Id");
+                    }
+                    break;
+
+                case RESTRICTED:
+                    getInput("Press <any key> to cancel");
                     control.cancel();
                     break;
-                }
-                try {
-                    long PaTrOn_Id = Long.valueOf(PAT_STR).longValue();
-                    control.cardSwiped(PaTrOn_Id);
-                }
-                catch (NumberFormatException e) {
-                    displayOutput("Invalid Patron Id");
-                }
-                break;
 
-                
-            case RESTRICTED:
-                getInput("Press <any key> to cancel");
-                control.cancel();
-                break;
-            
-                
-            case SCANNING:
-                String Item_StRiNg_InPuT = getInput("Scan Item (<enter> completes): ");
-                if (Item_StRiNg_InPuT.length() == 0) {
-                    control.borrowingCompleted();
+                case SCANNING:
+                    String itemStringInput = getInput("Scan Item (<enter> completes): ");
+                    if (itemStringInput.length() == 0) {
+                        control.borrowingCompleted();
+                        break;
+                    }
+                    try {
+                        int itemId = Integer.valueOf(itemStringInput).intValue();
+                        control.itemScanned(itemId);
+
+                    }
+                    catch (NumberFormatException exception) {
+                        displayOutput("Invalid Item Id");
+                    }
                     break;
-                }
-                try {
-                    int IiD = Integer.valueOf(Item_StRiNg_InPuT).intValue();
-                    control.itemScanned(IiD);
-                    
-                } catch (NumberFormatException e) {
-                    displayOutput("Invalid Item Id");
-                } 
-                break;
-                    
-                
-            case FINALISING:
-                String AnS = getInput("Commit loans? (Y/N): ");
-                if (AnS.toUpperCase().equals("N")) {
-                    control.cancel();
-                    
-                } else {
-                    control.commitLoans();
-                    getInput("Press <any key> to complete ");
-                }
-                break;
-                
-                
-            case COMPLETED:
-                displayOutput("Borrowing Completed");
-                return;
-    
-                
-            default:
-                displayOutput("Unhandled state");
-                throw new RuntimeException("BorrowItemUI : unhandled state :" + uiState);
+
+                case FINALISING:
+                    String userAnswer = getInput("Commit loans? (Y/N): ");
+                    if (userAnswer.toUpperCase().equals("N")) {
+                        control.cancel();
+                    }
+                    else {
+                        control.commitLoans();
+                        getInput("Press <any key> to complete ");
+                    }
+                    break;
+
+                case COMPLETED:
+                    displayOutput("Borrowing Completed");
+                    return;
+
+                default:
+                    displayOutput("Unhandled state");
+                    throw new RuntimeException("BorrowItemUI : unhandled state :" + uiState);
             }
         }        
     }
