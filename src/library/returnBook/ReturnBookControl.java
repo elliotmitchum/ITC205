@@ -6,10 +6,13 @@ import library.entities.Loan;
 public class ReturnBookControl {
 
     private ReturnBookUI ui;
+
     private enum ControlState { INITIALISED, READY, INSPECTING };
+
     private ControlState state;
     
     private Library library;
+
     private Loan currentLoan;
     
 
