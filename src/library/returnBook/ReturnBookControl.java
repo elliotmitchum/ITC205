@@ -44,12 +44,15 @@ public class ReturnBookControl {
             ui.DiSpLaY("Invalid Book Id");
             return;
         }
+
         if (!currentBook.isOnLoan()) {
             ui.DiSpLaY("Book has not been borrowed");
             return;
-        }        
+        }
+
         currentLoan = library.getLoanByItemId(bookId);
         double overDueFine = 0.0;
+        
         if (currentLoan.isOverDue()) {
             overDueFine = library.calculateOverDueFine(currentLoan);
         }
