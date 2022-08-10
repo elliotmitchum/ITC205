@@ -34,9 +34,9 @@ public class ReturnBookUI {
 
                 case READY:
                     String bookInputString = getInput("Scan Book (<enter> completes): ");
-                    if (bookInputString.length() == 0)
+                    if (bookInputString.length() == 0) {
                         control.sCaNnInG_cOmPlEtEd();
-
+                    }
                     else {
                         try {
                             long bookId = Long.valueOf(bookInputString).longValue();
