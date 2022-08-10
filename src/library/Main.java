@@ -198,7 +198,6 @@ public class Main {
 
 
     private static void addItem() {
-
         ItemType itemType = null;
         String typeMenu = """
             Select item type:
