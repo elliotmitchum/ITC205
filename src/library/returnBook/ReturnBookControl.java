@@ -39,6 +39,8 @@ public class ReturnBookControl {
         }
 
         Item currentBook = library.getItem(bookId);
+        String currentBookDisplay = currentBook.toString();
+        String currentLoanDisplay = currentLoan.toString();
         
         if (currentBook == null) {
             ui.DiSpLaY("Invalid Book Id");
@@ -52,14 +54,14 @@ public class ReturnBookControl {
 
         currentLoan = library.getLoanByItemId(bookId);
         double overDueFine = 0.0;
-        
+
         if (currentLoan.isOverDue()) {
             overDueFine = library.calculateOverDueFine(currentLoan);
         }
 
         ui.DiSpLaY("Inspecting");
-        ui.DiSpLaY(currentBook.toString());
-        ui.DiSpLaY(currentLoan.toString());
+        ui.DiSpLaY(currentBookDisplay);
+        ui.DiSpLaY(currentLoanDisplay);
         
         if (currentLoan.isOverDue()) {
             ui.DiSpLaY(String.format("\nOverdue fine : $%.2f", overDueFine));
