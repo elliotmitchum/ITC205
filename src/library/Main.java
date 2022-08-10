@@ -6,7 +6,7 @@ import java.util.Scanner;
 import library.entities.Item;
 import library.entities.ItemType;
 import library.borrowitem.BorrowItemUI;
-import library.borrowitem.bORROW_IteM_cONTROL;
+import library.borrowitem.BorrowItemControl;
 import library.entities.Calendar;
 import library.entities.Library;
 import library.entities.Loan;
@@ -164,12 +164,12 @@ public class Main {
 
 
     private static void BORROW_ITEM() {
-        new BorrowItemUI(new bORROW_IteM_cONTROL()).RuN();        
+        new BorrowItemUI(new BorrowItemControl()).run();
     }
 
 
     private static void RETURN_ITEM() {
-        new ReturnBookUI(new ReturnBookControl()).RuN();
+        new ReturnBookUI(new ReturnBookControl()).RuN();        
     }
 
 
