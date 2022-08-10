@@ -190,7 +190,8 @@ public class Main {
             int days = Integer.valueOf(input("Enter number of days: ")).intValue();
             CALENDAR.incrementDate(days);
             LIBRARY.updateCurrentLoansStatus();
-            output(SIMPLE_DATE_FORMAT.format(currentDate));
+            String currentDateDisplay = SIMPLE_DATE_FORMAT.format(currentDate);
+            output(currentDateDisplay);
         }
         catch (NumberFormatException e) {
             output("\nInvalid number of days\n");
