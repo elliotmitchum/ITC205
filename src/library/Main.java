@@ -1,6 +1,7 @@
 package library;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
 import library.entities.Item;
@@ -72,7 +73,8 @@ public class Main {
             boolean isFinished = false;
 
             while (!isFinished) {
-                output("\n" + SIMPLE_DATE_FORMAT.format(CALENDAR.getDate()));
+                Date currentDate = CALENDAR.getDate();
+                output("\n" + SIMPLE_DATE_FORMAT.format(currentDate));
                 String choice = input(MENU);
 
                 switch (choice.toUpperCase()) {
@@ -183,10 +185,11 @@ public class Main {
 
     private static void incrementDate() {
         try {
+            Date currentDate = CALENDAR.getDate();
             int days = Integer.valueOf(input("Enter number of days: ")).intValue();
             CALENDAR.incrementDate(days);
             LIBRARY.updateCurrentLoansStatus();
-            output(SIMPLE_DATE_FORMAT.format(CALENDAR.getDate()));
+            output(SIMPLE_DATE_FORMAT.format(currentDate));
         }
         catch (NumberFormatException e) {
             output("\nInvalid number of days\n");
