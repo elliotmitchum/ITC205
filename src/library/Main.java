@@ -27,7 +27,7 @@ public class Main {
 
     private static Calendar CALENDAR;
 
-    private static SimpleDateFormat SIMPLEDATEFORMAT;
+    private static SimpleDateFormat SIMPLE_DATE_FORMAT;
 
     private static String MENU = """
         Library Main Menu
@@ -57,68 +57,68 @@ public class Main {
             SCANNER = new Scanner(System.in);
             LIBRARY = Library.getInstance();
             CALENDAR = Calendar.getInstance();
-            SIMPLEDATEFORMAT = new SimpleDateFormat("dd/MM/yyyy");
+            SIMPLE_DATE_FORMAT = new SimpleDateFormat("dd/MM/yyyy");
 
-            for (Patron PAtrON : LIBRARY.listPatrons()) {
-                output(PAtrON);
+            for (Patron patron : LIBRARY.listPatrons()) {
+                output(patron);
             }
 
             output(" ");
 
-            for (Item iTEm : LIBRARY.listItems()) {
-                output(iTEm);
+            for (Item item : LIBRARY.listItems()) {
+                output(item);
             }
 
-            boolean fInIsHeD = false;
+            boolean isFinished = false;
 
-            while (!fInIsHeD) {
-                output("\n" + SIMPLEDATEFORMAT.format(CALENDAR.getDate()));
-                String ChOiCe = input(MENU);
+            while (!isFinished) {
+                output("\n" + SIMPLE_DATE_FORMAT.format(CALENDAR.getDate()));
+                String choice = input(MENU);
 
-                switch (ChOiCe.toUpperCase()) {
+                switch (choice.toUpperCase()) {
 
                     case "AP":
-                        ADD_PATRON();
+                        addPatron();
                         break;
 
                     case "LP":
-                        LIST_PATRONS();
+                        listPatrons();
                         break;
 
                     case "AI":
-                        ADD_ITEM();
+                        addItem();
                         break;
 
                     case "LI":
-                        LIST_ITEMS();
+                        listItems();
                         break;
 
                     case "FI":
-                        FIX_ITEMS();
+                        fixItems();
                         break;
 
                     case "B":
-                        BORROW_ITEM();
+                        borrowItem();
                         break;
 
                     case "R":
-                        RETURN_ITEM();
+                        returnItem();
                         break;
 
                     case "L":
-                        LIST_CURRENT_LOANS();
+                        listCurrentLoans();
                         break;
 
                     case "P":
-                        PAY_FINES();
+                        payFines();
                         break;
 
                     case "T":
-                        INCREMENT_DATE();
+                        incrementDate();
                         break;
 
                     case "Q":
-                        fInIsHeD = true;
+                        isFinished = true;
                         break;
 
                     default:
@@ -137,12 +137,12 @@ public class Main {
     }
 
 
-    private static void PAY_FINES() {
+    private static void payFines() {
         new PayFineUI(new pAY_fINE_cONTROL()).RuN();
     }
 
 
-    private static void LIST_CURRENT_LOANS() {
+    private static void listCurrentLoans() {
         output("");
         for (Loan loan : LIBRARY.listCurrentLoans()) {
             output(loan + "\n");
@@ -150,7 +150,7 @@ public class Main {
     }
 
 
-    private static void LIST_ITEMS() {
+    private static void listItems() {
         output("");
         for (Item book : LIBRARY.listItems()) {
             output(book + "\n");
@@ -158,7 +158,7 @@ public class Main {
     }
 
 
-    private static void LIST_PATRONS() {
+    private static void listPatrons() {
         output("");
         for (Patron member : LIBRARY.listPatrons()) {
             output(member + "\n");
@@ -166,27 +166,27 @@ public class Main {
     }
 
 
-    private static void BORROW_ITEM() {
+    private static void borrowItem() {
         new BorrowItemUI(new bORROW_IteM_cONTROL()).RuN();
     }
 
 
-    private static void RETURN_ITEM() {
+    private static void returnItem() {
         new ReturnBookUI(new rETURN_bOOK_cONTROL()).RuN();
     }
 
 
-    private static void FIX_ITEMS() {
+    private static void fixItems() {
         new FixItemUI(new fIX_iTeM_cONTROL()).RuN();
     }
 
 
-    private static void INCREMENT_DATE() {
+    private static void incrementDate() {
         try {
             int days = Integer.valueOf(input("Enter number of days: ")).intValue();
             CALENDAR.incrementDate(days);
             LIBRARY.updateCurrentLoansStatus();
-            output(SIMPLEDATEFORMAT.format(CALENDAR.getDate()));
+            output(SIMPLE_DATE_FORMAT.format(CALENDAR.getDate()));
         }
         catch (NumberFormatException e) {
             output("\nInvalid number of days\n");
@@ -194,7 +194,7 @@ public class Main {
     }
 
 
-    private static void ADD_ITEM() {
+    private static void addItem() {
 
         ItemType itemType = null;
         String typeMenu = """
@@ -239,22 +239,22 @@ public class Main {
             }
         }
 
-        String AuThOr = input("Enter author: ");
-        String TiTlE = input("Enter title: ");
-        String CaLl_NuMbEr = input("Enter call number: ");
-        Item BoOk = LIBRARY.addItem(AuThOr, TiTlE, CaLl_NuMbEr, itemType);
-        output("\n" + BoOk + "\n");
+        String author = input("Enter author: ");
+        String title = input("Enter title: ");
+        String callNumber = input("Enter call number: ");
+        Item book = LIBRARY.addItem(author, title, callNumber, itemType);
+        output("\n" + book + "\n");
     }
 
 
-    private static void ADD_PATRON() {
+    private static void addPatron() {
         try {
-            String FiRsT_NaMe = input("Enter first name: ");
-            String LaSt_NaMe = input("Enter last name: ");
-            String EmAiL_AdDrEsS = input("Enter email address: ");
-            long PhOnE_NuMbEr = Long.valueOf(input("Enter phone number: ")).intValue();
-            Patron PaTrOn = LIBRARY.addPatron(FiRsT_NaMe, LaSt_NaMe, EmAiL_AdDrEsS, PhOnE_NuMbEr);
-            output("\n" + PaTrOn + "\n");
+            String firstName = input("Enter first name: ");
+            String lastNae = input("Enter last name: ");
+            String emailAddress = input("Enter email address: ");
+            long phoneNumber = Long.valueOf(input("Enter phone number: ")).intValue();
+            Patron patron = LIBRARY.addPatron(firstName, lastNae, emailAddress, phoneNumber);
+            output("\n" + patron + "\n");
         }
         catch (NumberFormatException e) {
             output("\nInvalid phone number\n");
