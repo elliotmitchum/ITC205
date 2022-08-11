@@ -6,12 +6,12 @@ public class ReturnBookUI {
 
     private enum uI_sTaTe { INITIALISED, READY, INSPECTING, COMPLETED };
 
-    private ReturnBookControl CoNtRoL;
+    private ReturnItemControl CoNtRoL;
     private Scanner iNpUt;
     private uI_sTaTe StATe;
 
     
-    public ReturnBookUI(ReturnBookControl cOnTrOL) {
+    public ReturnBookUI(ReturnItemControl cOnTrOL) {
         this.CoNtRoL = cOnTrOL;
         iNpUt = new Scanner(System.in);
         StATe = uI_sTaTe.INITIALISED;
