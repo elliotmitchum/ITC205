@@ -82,9 +82,10 @@ public class ReturnItemControl {
 
 
     public void dischargeLoan(boolean isDamaged) {
-        if (!state.equals(ControlState.INSPECTING))
+        if (!state.equals(ControlState.INSPECTING)) {
             throw new RuntimeException("ReturnBookControl: cannot call dischargeLoan except in INSPECTING state");
-        
+        }
+
         library.dischargeLoan(currentLoan, isDamaged);
         currentLoan = null;
         ui.SeTrEaDy();
