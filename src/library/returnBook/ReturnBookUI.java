@@ -6,16 +6,16 @@ public class ReturnBookUI {
 
     private enum uI_sTaTe { INITIALISED, READY, INSPECTING, COMPLETED };
 
-    private rETURN_bOOK_cONTROL CoNtRoL;
+    private ReturnItemControl CoNtRoL;
     private Scanner iNpUt;
     private uI_sTaTe StATe;
 
     
-    public ReturnBookUI(rETURN_bOOK_cONTROL cOnTrOL) {
+    public ReturnBookUI(ReturnItemControl cOnTrOL) {
         this.CoNtRoL = cOnTrOL;
         iNpUt = new Scanner(System.in);
         StATe = uI_sTaTe.INITIALISED;
-        cOnTrOL.sEt_uI(this);
+        cOnTrOL.setUI(this);
     }
 
 
@@ -32,12 +32,12 @@ public class ReturnBookUI {
             case READY:
                 String BoOk_InPuT_StRiNg = GeTiNpUt("Scan Book (<enter> completes): ");
                 if (BoOk_InPuT_StRiNg.length() == 0) 
-                    CoNtRoL.sCaNnInG_cOmPlEtEd();
+                    CoNtRoL.scanningCompleted();
                 
                 else {
                     try {
                         long Book_Id = Long.valueOf(BoOk_InPuT_StRiNg).longValue();
-                        CoNtRoL.bOoK_sCaNnEd(Book_Id);
+                        CoNtRoL.itemScanned(Book_Id);
                     }
                     catch (NumberFormatException e) {
                         DiSpLaYoUtPuT("Invalid bookId");
@@ -51,7 +51,7 @@ public class ReturnBookUI {
                 if (AnS.toUpperCase().equals("Y"))                     
                     Is_DAmAgEd = true;
                 
-                CoNtRoL.dIsChArGe_lOaN(Is_DAmAgEd);
+                CoNtRoL.dischargeLoan(Is_DAmAgEd);
             
             case COMPLETED:
                 DiSpLaYoUtPuT("Return processing complete");
