@@ -50,8 +50,9 @@ public class ReturnItemUI {
                 case INSPECTING:
                     String answer = getInput("Is book damaged? (Y/N): ");
                     boolean isDamaged = false;
-                    if (answer.toUpperCase().equals("Y"))
+                    if (answer.toUpperCase().equals("Y")) {
                         isDamaged = true;
+                    }
 
                     control.dischargeLoan(isDamaged);
 
