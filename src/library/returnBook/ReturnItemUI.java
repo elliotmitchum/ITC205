@@ -9,14 +9,14 @@ public class ReturnItemUI {
 
     private ReturnItemControl control;
 
-    private Scanner input;
+    private Scanner scanner;
 
     private ReturnItemUIState state;
 
 
     public ReturnItemUI(ReturnItemControl control) {
         this.control = control;
-        input = new Scanner(System.in);
+        scanner = new Scanner(System.in);
         state = ReturnItemUIState.INITIALISED;
         control.setUI(this);
     }
@@ -69,7 +69,7 @@ public class ReturnItemUI {
 
     private String getInput(String prompt) {
         System.out.print(prompt);
-        return input.nextLine();
+        return scanner.nextLine();
     }
 
 
