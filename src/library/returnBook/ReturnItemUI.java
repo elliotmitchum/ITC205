@@ -5,19 +5,19 @@ import java.util.Scanner;
 
 public class ReturnItemUI {
 
-    private enum UiState {INITIALISED, READY, INSPECTING, COMPLETED};
+    private enum ReturnItemUIState {INITIALISED, READY, INSPECTING, COMPLETED};
 
     private ReturnItemControl control;
 
     private Scanner input;
 
-    private UiState state;
+    private ReturnItemUIState state;
 
 
     public ReturnItemUI(ReturnItemControl control) {
         this.control = control;
         input = new Scanner(System.in);
-        state = UiState.INITIALISED;
+        state = ReturnItemUIState.INITIALISED;
         control.setUI(this);
     }
 
@@ -83,17 +83,17 @@ public class ReturnItemUI {
     }
 
     public void setReady() {
-        state = UiState.READY;
+        state = ReturnItemUIState.READY;
     }
 
 
     public void setInspecting() {
-        state = UiState.INSPECTING;
+        state = ReturnItemUIState.INSPECTING;
     }
 
 
     public void setCompleted() {
-        state = UiState.COMPLETED;
+        state = ReturnItemUIState.COMPLETED;
     }
 
 
