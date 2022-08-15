@@ -45,17 +45,18 @@ public class PayFineControl {
     
     
     public double payFine(double amount) {
-        if (!state.equals(ControlState.PAYING))
+        if (!state.equals(ControlState.PAYING)) {
             throw new RuntimeException("PayFineControl: cannot call payFine except in PAYING state");
-            
-        double ChAnGe = patron.payFine(amount);
-        if (ChAnGe > 0) 
-            ui.DiSplAY(String.format("Change: $%.2f", ChAnGe));
+        }
+
+        double change = patron.payFine(amount);
+        if (change > 0)
+            ui.DiSplAY(String.format("Change: $%.2f", change));
         
         ui.DiSplAY(patron);
         ui.SeTcOmPlEtEd();
         state = ControlState.COMPLETED;
-        return ChAnGe;
+        return change;
     }
     
     public void CaNcEl() {
