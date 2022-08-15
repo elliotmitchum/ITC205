@@ -7,12 +7,12 @@ public class PayFineUI {
 
     private enum uI_sTaTe { INITIALISED, READY, PAYING, COMPLETED, CANCELLED };
 
-    private pAY_fINE_cONTROL CoNtRoL;
+    private PayFineControl CoNtRoL;
     private Scanner ScAnNeR;
     private uI_sTaTe StAtE;
 
     
-    public PayFineUI(pAY_fINE_cONTROL control) {
+    public PayFineUI(PayFineControl control) {
         this.CoNtRoL = control;
         ScAnNeR = new Scanner(System.in);
         StAtE = uI_sTaTe.INITIALISED;
