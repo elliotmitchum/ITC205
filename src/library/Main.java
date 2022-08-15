@@ -254,11 +254,11 @@ public class Main {
     private static void addPatron() {
         try {
             String firstName = input("Enter first name: ");
-            String lastNae = input("Enter last name: ");
+            String lastName = input("Enter last name: ");
             String emailAddress = input("Enter email address: ");
             String phoneNumberDisplay = input("Enter phone number: ");
             long phoneNumber = Long.valueOf(phoneNumberDisplay).intValue();
-            Patron patron = LIBRARY.addPatron(firstName, lastNae, emailAddress, phoneNumber);
+            Patron patron = LIBRARY.addPatron(firstName, lastName, emailAddress, phoneNumber);
             output("\n" + patron + "\n");
         }
         catch (NumberFormatException e) {
