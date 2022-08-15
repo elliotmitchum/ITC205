@@ -4,10 +4,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
+import library.borrowitem.BorrowItemControl;
 import library.entities.Item;
 import library.entities.ItemType;
 import library.borrowitem.BorrowItemUI;
-import library.borrowitem.bORROW_IteM_cONTROL;
 import library.entities.Calendar;
 import library.entities.Library;
 import library.entities.Loan;
@@ -16,8 +16,8 @@ import library.fixitem.FixItemUI;
 import library.fixitem.fIX_iTeM_cONTROL;
 import library.payfine.PayFineUI;
 import library.payfine.pAY_fINE_cONTROL;
-import library.returnBook.ReturnBookUI;
-import library.returnBook.rETURN_bOOK_cONTROL;
+import library.returnBook.ReturnItemControl;
+import library.returnBook.ReturnItemUI;
 
 
 public class Main {
@@ -169,12 +169,12 @@ public class Main {
 
 
     private static void borrowItem() {
-        new BorrowItemUI(new bORROW_IteM_cONTROL()).RuN();
+        new BorrowItemUI(new BorrowItemControl()).run();
     }
 
 
     private static void returnItem() {
-        new ReturnBookUI(new rETURN_bOOK_cONTROL()).RuN();
+        new ReturnItemUI(new ReturnItemControl()).run();
     }
 
 
