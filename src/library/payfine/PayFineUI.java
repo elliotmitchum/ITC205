@@ -36,7 +36,7 @@ public class PayFineUI {
                 }
                 try {
                     long PAtroN_ID = Long.valueOf(PaT_Str).longValue();
-                    CoNtRoL.CaRd_sWiPeD(PAtroN_ID);
+                    CoNtRoL.cardSwiped(PAtroN_ID);
                 }
                 catch (NumberFormatException e) {
                     DiSpLaYoUtPuT("Invalid patronID");

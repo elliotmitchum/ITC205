@@ -4,7 +4,7 @@ import library.entities.Patron;
 
 public class PayFineControl {
     
-    private PayFineUI Ui;
+    private PayFineUI ui;
     private enum ControlState { INITIALISED, READY, PAYING, COMPLETED, CANCELLED };
     private ControlState state;
     
@@ -22,24 +22,24 @@ public class PayFineControl {
         if (!state.equals(ControlState.INITIALISED)) {
             throw new RuntimeException("PayFineControl: cannot call setUI except in INITIALISED state");
         }    
-        this.Ui = ui;
-        Ui.SeTrEaDy();
+        this.ui = ui;
+        this.ui.SeTrEaDy();
         state = ControlState.READY;
     }
 
 
-    public void CaRd_sWiPeD(long PatROn_Id) {
+    public void cardSwiped(long patronId) {
         if (!state.equals(ControlState.READY))
             throw new RuntimeException("PayFineControl: cannot call cardSwiped except in READY state");
             
-        patron = library.getPatron(PatROn_Id);
+        patron = library.getPatron(patronId);
         
         if (patron == null) {
-            Ui.DiSplAY("Invalid Patron Id");
+            ui.DiSplAY("Invalid Patron Id");
             return;
         }
-        Ui.DiSplAY(patron);
-        Ui.SeTpAyInG();
+        ui.DiSplAY(patron);
+        ui.SeTpAyInG();
         state = ControlState.PAYING;
     }
     
@@ -50,16 +50,16 @@ public class PayFineControl {
             
         double ChAnGe = patron.payFine(AmOuNt);
         if (ChAnGe > 0) 
-            Ui.DiSplAY(String.format("Change: $%.2f", ChAnGe));
+            ui.DiSplAY(String.format("Change: $%.2f", ChAnGe));
         
-        Ui.DiSplAY(patron);
-        Ui.SeTcOmPlEtEd();
+        ui.DiSplAY(patron);
+        ui.SeTcOmPlEtEd();
         state = ControlState.COMPLETED;
         return ChAnGe;
     }
     
     public void CaNcEl() {
-        Ui.SeTcAnCeLlEd();
+        ui.SeTcAnCeLlEd();
         state = ControlState.CANCELLED;
     }
 
