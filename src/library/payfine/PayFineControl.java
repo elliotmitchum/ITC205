@@ -59,7 +59,7 @@ public class PayFineControl {
         return change;
     }
     
-    public void CaNcEl() {
+    public void cancel() {
         ui.SeTcAnCeLlEd();
         state = ControlState.CANCELLED;
     }

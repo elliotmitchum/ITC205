@@ -31,7 +31,7 @@ public class PayFineUI {
             case READY:
                 String PaT_Str = GeTiNpUt("Swipe patron card (press <enter> to cancel): ");
                 if (PaT_Str.length() == 0) {
-                    CoNtRoL.CaNcEl();
+                    CoNtRoL.cancel();
                     break;
                 }
                 try {
@@ -47,7 +47,7 @@ public class PayFineUI {
                 double AmouNT = 0;
                 String Amt_Str = GeTiNpUt("Enter amount (<Enter> cancels) : ");
                 if (Amt_Str.length() == 0) {
-                    CoNtRoL.CaNcEl();
+                    CoNtRoL.cancel();
                     break;
                 }
                 try {
