@@ -58,7 +58,7 @@ public class PayFineUI {
                     DiSpLaYoUtPuT("Amount must be positive");
                     break;
                 }
-                CoNtRoL.PaY_FiNe(AmouNT);
+                CoNtRoL.payFine(AmouNT);
                 break;
                                 
             case CANCELLED:
