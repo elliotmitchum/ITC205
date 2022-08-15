@@ -186,8 +186,8 @@ public class Main {
     private static void incrementDate() {
         try {
             Date currentDate = CALENDAR.getDate();
-            // @todo Fix method invocation as parameter.
-            int days = Integer.valueOf(input("Enter number of days: ")).intValue();
+            String answer = input("Enter number of days: ");
+            int days = Integer.valueOf(answer).intValue();
             CALENDAR.incrementDate(days);
             LIBRARY.updateCurrentLoansStatus();
             String currentDateDisplay = SIMPLE_DATE_FORMAT.format(currentDate);
