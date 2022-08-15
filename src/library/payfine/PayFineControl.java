@@ -5,62 +5,62 @@ import library.entities.Patron;
 public class PayFineControl {
     
     private PayFineUI Ui;
-    private enum cOnTrOl_sTaTe { INITIALISED, READY, PAYING, COMPLETED, CANCELLED };
-    private cOnTrOl_sTaTe StAtE;
+    private enum ControlState { INITIALISED, READY, PAYING, COMPLETED, CANCELLED };
+    private ControlState state;
     
-    private Library LiBrArY;
-    private Patron paTRon;
+    private Library library;
+    private Patron patron;
 
 
     public PayFineControl() {
-        this.LiBrArY = Library.getInstance();
-        StAtE = cOnTrOl_sTaTe.INITIALISED;
+        this.library = Library.getInstance();
+        state = ControlState.INITIALISED;
     }
     
     
     public void SeT_uI(PayFineUI uI) {
-        if (!StAtE.equals(cOnTrOl_sTaTe.INITIALISED)) {
+        if (!state.equals(ControlState.INITIALISED)) {
             throw new RuntimeException("PayFineControl: cannot call setUI except in INITIALISED state");
         }    
         this.Ui = uI;
         Ui.SeTrEaDy();
-        StAtE = cOnTrOl_sTaTe.READY;        
+        state = ControlState.READY;
     }
 
 
     public void CaRd_sWiPeD(long PatROn_Id) {
-        if (!StAtE.equals(cOnTrOl_sTaTe.READY)) 
+        if (!state.equals(ControlState.READY))
             throw new RuntimeException("PayFineControl: cannot call cardSwiped except in READY state");
             
-        paTRon = LiBrArY.getPatron(PatROn_Id);
+        patron = library.getPatron(PatROn_Id);
         
-        if (paTRon == null) {
+        if (patron == null) {
             Ui.DiSplAY("Invalid Patron Id");
             return;
         }
-        Ui.DiSplAY(paTRon);
+        Ui.DiSplAY(patron);
         Ui.SeTpAyInG();
-        StAtE = cOnTrOl_sTaTe.PAYING;
+        state = ControlState.PAYING;
     }
     
     
     public double PaY_FiNe(double AmOuNt) {
-        if (!StAtE.equals(cOnTrOl_sTaTe.PAYING)) 
+        if (!state.equals(ControlState.PAYING))
             throw new RuntimeException("PayFineControl: cannot call payFine except in PAYING state");
             
-        double ChAnGe = paTRon.payFine(AmOuNt);
+        double ChAnGe = patron.payFine(AmOuNt);
         if (ChAnGe > 0) 
             Ui.DiSplAY(String.format("Change: $%.2f", ChAnGe));
         
-        Ui.DiSplAY(paTRon);
+        Ui.DiSplAY(patron);
         Ui.SeTcOmPlEtEd();
-        StAtE = cOnTrOl_sTaTe.COMPLETED;
+        state = ControlState.COMPLETED;
         return ChAnGe;
     }
     
     public void CaNcEl() {
         Ui.SeTcAnCeLlEd();
-        StAtE = cOnTrOl_sTaTe.CANCELLED;
+        state = ControlState.CANCELLED;
     }
 
 
