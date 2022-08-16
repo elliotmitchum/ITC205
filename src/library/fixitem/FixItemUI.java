@@ -20,7 +20,7 @@ public class FixItemUI {
 
 
     public void run() {
-        DiSpLaY_OuTpUt("Fix Item Use Case UI\n");
+        displayOutput("Fix Item Use Case UI\n");
         
         while (true) {
             
@@ -37,7 +37,7 @@ public class FixItemUI {
                         control.ItEm_ScAnNeD(itEM_Id);
                     }
                     catch (NumberFormatException e) {
-                        DiSpLaY_OuTpUt("Invalid itemId");
+                        displayOutput("Invalid itemId");
                     }
                 }
                 break;    
@@ -52,11 +52,11 @@ public class FixItemUI {
                 break;
                                 
             case COMPLETED:
-                DiSpLaY_OuTpUt("Fixing process complete");
+                displayOutput("Fixing process complete");
                 return;
             
             default:
-                DiSpLaY_OuTpUt("Unhandled state");
+                displayOutput("Unhandled state");
                 throw new RuntimeException("FixItemUI : unhandled state :" + uiState);
             
             }        
@@ -71,13 +71,13 @@ public class FixItemUI {
     }    
         
         
-    private void DiSpLaY_OuTpUt(Object DiSpLaYoBjEcT) {
-        System.out.println(DiSpLaYoBjEcT);
+    private void displayOutput(Object displayobject) {
+        System.out.println(displayobject);
     }
     
 
     public void dIsPlAy(Object DiSpLaYoBjEcT) {
-        DiSpLaY_OuTpUt(DiSpLaYoBjEcT);
+        displayOutput(DiSpLaYoBjEcT);
     }
 
 
