@@ -62,9 +62,9 @@ public class FixItemControl {
 
     
     public void processingCompleted() {
-        if (!state.equals(ControlState.READY))
+        if (!state.equals(ControlState.READY)) {
             throw new RuntimeException("FixItemControl: cannot call processingCompleted except in READY state");
-        
+        }
         ui.SeTcOmPlEtEd();
     }
 
