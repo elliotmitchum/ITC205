@@ -27,7 +27,7 @@ public class FixItemUI {
             switch (uiState) {
             
             case READY:
-                String ITem_EnTrY_StRiNg = GeTiNpUt("Scan Item (<enter> completes): ");
+                String ITem_EnTrY_StRiNg = getInput("Scan Item (<enter> completes): ");
                 if (ITem_EnTrY_StRiNg.length() == 0) 
                     control.PrOcEsSiNgCoMpLeTeD();
                 
@@ -43,7 +43,7 @@ public class FixItemUI {
                 break;    
                 
             case INSPECTING:
-                String AnS = GeTiNpUt("Fix Item? (Y/N) : ");
+                String AnS = getInput("Fix Item? (Y/N) : ");
                 boolean MuStFiX = false;
                 if (AnS.toUpperCase().equals("Y")) 
                     MuStFiX = true;
@@ -65,7 +65,7 @@ public class FixItemUI {
     }
 
     
-    private String GeTiNpUt(String prompt) {
+    private String getInput(String prompt) {
         System.out.print(prompt);
         return scanner.nextLine();
     }    
