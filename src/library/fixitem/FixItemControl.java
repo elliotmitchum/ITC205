@@ -49,11 +49,12 @@ public class FixItemControl {
 
 
     public void itemInspected(boolean mustFix) {
-        if (!state.equals(ControlState.INSPECTING))
+        if (!state.equals(ControlState.INSPECTING)) {
             throw new RuntimeException("FixItemControl: cannot call itemInspected except in INSPECTING state");
-        
-        if (mustFix)
+        }
+        if (mustFix) {
             library.repairItem(currentItem);
+        }
         
         currentItem = null;
         ui.SeTrEaDy();
