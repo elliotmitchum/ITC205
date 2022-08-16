@@ -23,7 +23,7 @@ public class fIX_iTeM_cONTROL {
             throw new RuntimeException("FixItemControl: cannot call setUI except in INITIALISED state");
             
         this.Ui = ui;
-        Ui.SeTrEaDy();
+        Ui.setReady();
         StAtE = CoNtRoL_StAtE.READY;        
     }
 
@@ -56,7 +56,7 @@ public class fIX_iTeM_cONTROL {
             LiBrArY.repairItem(CuRrEnT_ItEm);
         
         CuRrEnT_ItEm = null;
-        Ui.SeTrEaDy();
+        Ui.setReady();
         StAtE = CoNtRoL_StAtE.READY;        
     }
 

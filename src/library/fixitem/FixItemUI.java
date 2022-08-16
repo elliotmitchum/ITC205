@@ -87,7 +87,7 @@ public class FixItemUI {
     }
 
 
-    public void SeTrEaDy() {
+    public void setReady() {
         this.uiState = FixItemUIState.READY;
         
     }
