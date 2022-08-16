@@ -29,11 +29,10 @@ public class PayFineControl {
 
 
     public void cardSwiped(long patronId) {
-        if (!state.equals(ControlState.READY))
+        if (!state.equals(ControlState.READY)) {
             throw new RuntimeException("PayFineControl: cannot call cardSwiped except in READY state");
-            
+        }
         patron = library.getPatron(patronId);
-        
         if (patron == null) {
             ui.DiSplAY("Invalid Patron Id");
             return;
