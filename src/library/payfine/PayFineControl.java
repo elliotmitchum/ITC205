@@ -34,10 +34,10 @@ public class PayFineControl {
         }
         patron = library.getPatron(patronId);
         if (patron == null) {
-            ui.DiSplAY("Invalid Patron Id");
+            ui.display("Invalid Patron Id");
             return;
         }
-        ui.DiSplAY(patron);
+        ui.display(patron);
         ui.SeTpAyInG();
         state = ControlState.PAYING;
     }
@@ -50,10 +50,10 @@ public class PayFineControl {
 
         double change = patron.payFine(paymentAmount);
         if (change > 0) {
-            ui.DiSplAY(String.format("Change: $%.2f", change));
+            ui.display(String.format("Change: $%.2f", change));
         }
         
-        ui.DiSplAY(patron);
+        ui.display(patron);
         ui.SeTcOmPlEtEd();
         state = ControlState.COMPLETED;
         return change;
