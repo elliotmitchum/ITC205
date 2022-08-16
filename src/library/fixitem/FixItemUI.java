@@ -48,7 +48,7 @@ public class FixItemUI {
                 if (AnS.toUpperCase().equals("Y")) 
                     MuStFiX = true;
                 
-                CoNtRoL.IteMInSpEcTeD(MuStFiX);
+                CoNtRoL.itemInspected(MuStFiX);
                 break;
                                 
             case COMPLETED:
