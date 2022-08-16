@@ -34,7 +34,7 @@ public class FixItemUI {
                 else {
                     try {
                         long itEM_Id = Long.valueOf(ITem_EnTrY_StRiNg).longValue();
-                        CoNtRoL.ItEm_ScAnNeD(itEM_Id);
+                        CoNtRoL.itemScanned(itEM_Id);
                     }
                     catch (NumberFormatException e) {
                         DiSpLaY_OuTpUt("Invalid itemId");

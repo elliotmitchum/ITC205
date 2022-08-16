@@ -28,11 +28,11 @@ public class FixItemControl {
     }
 
 
-    public void ItEm_ScAnNeD(long iTEm_Id) {
+    public void itemScanned(long itemId) {
         if (!state.equals(ControlState.READY))
             throw new RuntimeException("FixItemControl: cannot call itemScanned except in READY state");
             
-        currentItem = library.getItem(iTEm_Id);
+        currentItem = library.getItem(itemId);
         
         if (currentItem == null) {
             ui.dIsPlAy("Invalid itemId");
