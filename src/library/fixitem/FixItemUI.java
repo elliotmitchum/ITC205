@@ -4,17 +4,17 @@ import java.util.Scanner;
 
 public class FixItemUI {
 
-    private enum uI_sTaTe { INITIALISED, READY, INSPECTING, COMPLETED };
+    private enum FixItemUIState { INITIALISED, READY, INSPECTING, COMPLETED };
 
-    private fIX_iTeM_cONTROL CoNtRoL;
-    private Scanner InPuT;
-    private uI_sTaTe StAtE;
+    private fIX_iTeM_cONTROL control;
+    private Scanner scanner;
+    private FixItemUIState uiState;
 
     
     public FixItemUI(fIX_iTeM_cONTROL CoNtRoL) {
-        this.CoNtRoL = CoNtRoL;
-        InPuT = new Scanner(System.in);
-        StAtE = uI_sTaTe.INITIALISED;
+        this.control = CoNtRoL;
+        scanner = new Scanner(System.in);
+        uiState = FixItemUIState.INITIALISED;
         CoNtRoL.SeT_Ui(this);
     }
 
@@ -24,17 +24,17 @@ public class FixItemUI {
         
         while (true) {
             
-            switch (StAtE) {
+            switch (uiState) {
             
             case READY:
                 String ITem_EnTrY_StRiNg = GeTiNpUt("Scan Item (<enter> completes): ");
                 if (ITem_EnTrY_StRiNg.length() == 0) 
-                    CoNtRoL.PrOcEsSiNgCoMpLeTeD();
+                    control.PrOcEsSiNgCoMpLeTeD();
                 
                 else {
                     try {
                         long itEM_Id = Long.valueOf(ITem_EnTrY_StRiNg).longValue();
-                        CoNtRoL.ItEm_ScAnNeD(itEM_Id);
+                        control.ItEm_ScAnNeD(itEM_Id);
                     }
                     catch (NumberFormatException e) {
                         DiSpLaY_OuTpUt("Invalid itemId");
@@ -48,7 +48,7 @@ public class FixItemUI {
                 if (AnS.toUpperCase().equals("Y")) 
                     MuStFiX = true;
                 
-                CoNtRoL.IteMInSpEcTeD(MuStFiX);
+                control.IteMInSpEcTeD(MuStFiX);
                 break;
                                 
             case COMPLETED:
@@ -57,7 +57,7 @@ public class FixItemUI {
             
             default:
                 DiSpLaY_OuTpUt("Unhandled state");
-                throw new RuntimeException("FixItemUI : unhandled state :" + StAtE);            
+                throw new RuntimeException("FixItemUI : unhandled state :" + uiState);
             
             }        
         }
@@ -67,7 +67,7 @@ public class FixItemUI {
     
     private String GeTiNpUt(String prompt) {
         System.out.print(prompt);
-        return InPuT.nextLine();
+        return scanner.nextLine();
     }    
         
         
@@ -82,19 +82,19 @@ public class FixItemUI {
 
 
     public void SeTiNsPeCtInG() {
-        this.StAtE = uI_sTaTe.INSPECTING;
+        this.uiState = FixItemUIState.INSPECTING;
         
     }
 
 
     public void SeTrEaDy() {
-        this.StAtE = uI_sTaTe.READY;
+        this.uiState = FixItemUIState.READY;
         
     }
 
 
     public void SeTcOmPlEtEd() {
-        this.StAtE = uI_sTaTe.COMPLETED;
+        this.uiState = FixItemUIState.COMPLETED;
         
     }
     
