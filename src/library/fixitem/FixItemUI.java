@@ -29,7 +29,7 @@ public class FixItemUI {
             case READY:
                 String ITem_EnTrY_StRiNg = GeTiNpUt("Scan Item (<enter> completes): ");
                 if (ITem_EnTrY_StRiNg.length() == 0) 
-                    CoNtRoL.PrOcEsSiNgCoMpLeTeD();
+                    CoNtRoL.processingCompleted();
                 
                 else {
                     try {

@@ -61,7 +61,7 @@ public class FixItemControl {
     }
 
     
-    public void PrOcEsSiNgCoMpLeTeD() {
+    public void processingCompleted() {
         if (!state.equals(ControlState.READY))
             throw new RuntimeException("FixItemControl: cannot call processingCompleted except in READY state");
         
