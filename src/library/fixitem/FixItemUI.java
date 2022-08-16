@@ -76,8 +76,8 @@ public class FixItemUI {
     }
     
 
-    public void dIsPlAy(Object DiSpLaYoBjEcT) {
-        displayOutput(DiSpLaYoBjEcT);
+    public void display(Object displayobject) {
+        displayOutput(displayobject);
     }
 
 

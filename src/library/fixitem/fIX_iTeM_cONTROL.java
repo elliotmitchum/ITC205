@@ -35,14 +35,14 @@ public class fIX_iTeM_cONTROL {
         CuRrEnT_ItEm = LiBrArY.getItem(iTEm_Id);
         
         if (CuRrEnT_ItEm == null) {
-            Ui.dIsPlAy("Invalid itemId");
+            Ui.display("Invalid itemId");
             return;
         }
         if (!CuRrEnT_ItEm.isDamaged()) {
-            Ui.dIsPlAy("Item has not been damaged");
+            Ui.display("Item has not been damaged");
             return;
         }
-        Ui.dIsPlAy(CuRrEnT_ItEm);
+        Ui.display(CuRrEnT_ItEm);
         Ui.SeTiNsPeCtInG();
         StAtE = CoNtRoL_StAtE.INSPECTING;        
     }
