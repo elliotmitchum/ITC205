@@ -15,7 +15,7 @@ import library.entities.Patron;
 import library.fixitem.FixItemUI;
 import library.fixitem.fIX_iTeM_cONTROL;
 import library.payfine.PayFineUI;
-import library.payfine.pAY_fINE_cONTROL;
+import library.payfine.PayFineControl;
 import library.returnBook.ReturnItemControl;
 import library.returnBook.ReturnItemUI;
 
@@ -140,7 +140,7 @@ public class Main {
 
 
     private static void payFines() {
-        new PayFineUI(new pAY_fINE_cONTROL()).RuN();
+        new PayFineUI(new PayFineControl()).RuN();
     }
 
 
