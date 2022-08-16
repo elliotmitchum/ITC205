@@ -18,7 +18,7 @@ public class FixItemControl {
     }
     
     
-    public void SeT_Ui(FixItemUI ui) {
+    public void setUI(FixItemUI ui) {
         if (!state.equals(ControlState.INITIALISED))
             throw new RuntimeException("FixItemControl: cannot call setUI except in INITIALISED state");
             

@@ -15,7 +15,7 @@ public class FixItemUI {
         this.CoNtRoL = CoNtRoL;
         InPuT = new Scanner(System.in);
         StAtE = uI_sTaTe.INITIALISED;
-        CoNtRoL.SeT_Ui(this);
+        CoNtRoL.setUI(this);
     }
 
 
