@@ -100,7 +100,7 @@ public class PayFineUI {
     }
 
 
-    public void SeTpAyInG() {
+    public void setPaying() {
         uiState = PayFineUIState.PAYING;
         
     }

@@ -38,7 +38,7 @@ public class PayFineControl {
             return;
         }
         ui.display(patron);
-        ui.SeTpAyInG();
+        ui.setPaying();
         state = ControlState.PAYING;
     }
     
