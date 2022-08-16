@@ -65,7 +65,7 @@ public class fIX_iTeM_cONTROL {
         if (!StAtE.equals(CoNtRoL_StAtE.READY)) 
             throw new RuntimeException("FixItemControl: cannot call processingCompleted except in READY state");
         
-        Ui.SeTcOmPlEtEd();
+        Ui.setCompleted();
     }
 
 }

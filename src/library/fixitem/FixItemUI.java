@@ -93,7 +93,7 @@ public class FixItemUI {
     }
 
 
-    public void SeTcOmPlEtEd() {
+    public void setCompleted() {
         this.uiState = FixItemUIState.COMPLETED;
         
     }
