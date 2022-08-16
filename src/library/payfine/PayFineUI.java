@@ -84,8 +84,8 @@ public class PayFineUI {
     }    
         
         
-    private void displayOutput(Object object) {
-        System.out.println(object);
+    private void displayOutput(Object displayObject) {
+        System.out.println(displayObject);
     }    
             
 
