@@ -54,7 +54,7 @@ public class PayFineControl {
         }
         
         ui.display(patron);
-        ui.SeTcOmPlEtEd();
+        ui.setCompleted();
         state = ControlState.COMPLETED;
         return change;
     }
