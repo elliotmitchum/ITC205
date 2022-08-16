@@ -5,20 +5,20 @@ import java.util.Scanner;
 public class PayFineUI {
 
 
-    private enum uI_sTaTe { INITIALISED, READY, PAYING, COMPLETED, CANCELLED };
+    private enum PayFineUIState { INITIALISED, READY, PAYING, COMPLETED, CANCELLED };
 
-    private PayFineControl CoNtRoL;
-    private Scanner ScAnNeR;
-    private uI_sTaTe StAtE;
+    private PayFineControl control;
+    private Scanner scanner;
+    private PayFineUIState uiState;
 
     
     public PayFineUI(PayFineControl control) {
-        this.CoNtRoL = control;
-        ScAnNeR = new Scanner(System.in);
-        StAtE = uI_sTaTe.INITIALISED;
+        this.control = control;
+        scanner = new Scanner(System.in);
+        uiState = PayFineUIState.INITIALISED;
         control.setUI(this);
     }
-    
+
     
 
     public void RuN() {
@@ -26,17 +26,17 @@ public class PayFineUI {
         
         while (true) {
             
-            switch (StAtE) {
+            switch (uiState) {
             
             case READY:
                 String PaT_Str = GeTiNpUt("Swipe patron card (press <enter> to cancel): ");
                 if (PaT_Str.length() == 0) {
-                    CoNtRoL.cancel();
+                    control.cancel();
                     break;
                 }
                 try {
                     long PAtroN_ID = Long.valueOf(PaT_Str).longValue();
-                    CoNtRoL.cardSwiped(PAtroN_ID);
+                    control.cardSwiped(PAtroN_ID);
                 }
                 catch (NumberFormatException e) {
                     DiSpLaYoUtPuT("Invalid patronID");
@@ -47,7 +47,7 @@ public class PayFineUI {
                 double AmouNT = 0;
                 String Amt_Str = GeTiNpUt("Enter amount (<Enter> cancels) : ");
                 if (Amt_Str.length() == 0) {
-                    CoNtRoL.cancel();
+                    control.cancel();
                     break;
                 }
                 try {
@@ -58,7 +58,7 @@ public class PayFineUI {
                     DiSpLaYoUtPuT("Amount must be positive");
                     break;
                 }
-                CoNtRoL.payFine(AmouNT);
+                control.payFine(AmouNT);
                 break;
                                 
             case CANCELLED:
@@ -71,7 +71,7 @@ public class PayFineUI {
             
             default:
                 DiSpLaYoUtPuT("Unhandled state");
-                throw new RuntimeException("FixBookUI : unhandled state :" + StAtE);            
+                throw new RuntimeException("FixBookUI : unhandled state :" + uiState);
             
             }        
         }        
@@ -80,7 +80,7 @@ public class PayFineUI {
     
     private String GeTiNpUt(String prompt) {
         System.out.print(prompt);
-        return ScAnNeR.nextLine();
+        return scanner.nextLine();
     }    
         
         
@@ -95,25 +95,25 @@ public class PayFineUI {
 
 
     public void SeTcOmPlEtEd() {
-        StAtE = uI_sTaTe.COMPLETED;
+        uiState = PayFineUIState.COMPLETED;
         
     }
 
 
     public void SeTpAyInG() {
-        StAtE = uI_sTaTe.PAYING;
+        uiState = PayFineUIState.PAYING;
         
     }
 
 
     public void SeTcAnCeLlEd() {
-        StAtE = uI_sTaTe.CANCELLED;
+        uiState = PayFineUIState.CANCELLED;
         
     }
 
 
     public void SeTrEaDy() {
-        StAtE = uI_sTaTe.READY;
+        uiState = PayFineUIState.READY;
         
     }
 
