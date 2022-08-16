@@ -43,7 +43,7 @@ public class fIX_iTeM_cONTROL {
             return;
         }
         Ui.display(CuRrEnT_ItEm);
-        Ui.SeTiNsPeCtInG();
+        Ui.setInspecting();
         StAtE = CoNtRoL_StAtE.INSPECTING;        
     }
 

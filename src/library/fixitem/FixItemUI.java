@@ -81,7 +81,7 @@ public class FixItemUI {
     }
 
 
-    public void SeTiNsPeCtInG() {
+    public void setInspecting() {
         this.uiState = FixItemUIState.INSPECTING;
         
     }
