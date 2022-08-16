@@ -89,8 +89,8 @@ public class PayFineUI {
     }    
             
 
-    public void display(Object object) {
-        displayOutput(object);
+    public void display(Object displayObject) {
+        displayOutput(displayObject);
     }
 
 
