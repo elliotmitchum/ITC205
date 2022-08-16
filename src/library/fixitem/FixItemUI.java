@@ -19,7 +19,7 @@ public class FixItemUI {
     }
 
 
-    public void RuN() {
+    public void run() {
         DiSpLaY_OuTpUt("Fix Item Use Case UI\n");
         
         while (true) {
