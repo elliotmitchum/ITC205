@@ -106,7 +106,7 @@ public class PayFineUI {
     }
 
 
-    public void SeTcAnCeLlEd() {
+    public void setCancelled() {
         uiState = PayFineUIState.CANCELLED;
         
     }

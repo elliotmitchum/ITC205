@@ -60,7 +60,7 @@ public class PayFineControl {
     }
     
     public void cancel() {
-        ui.SeTcAnCeLlEd();
+        ui.setCancelled();
         state = ControlState.CANCELLED;
     }
 
