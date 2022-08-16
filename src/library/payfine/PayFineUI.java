@@ -5,115 +5,115 @@ import java.util.Scanner;
 public class PayFineUI {
 
 
-    private enum uI_sTaTe { INITIALISED, READY, PAYING, COMPLETED, CANCELLED };
+    private enum PayFineUIState { INITIALISED, READY, PAYING, COMPLETED, CANCELLED };
 
-    private PayFineControl CoNtRoL;
-    private Scanner ScAnNeR;
-    private uI_sTaTe StAtE;
+    private PayFineControl control;
+    private Scanner scanner;
+    private PayFineUIState uiState;
 
     
     public PayFineUI(PayFineControl control) {
-        this.CoNtRoL = control;
-        ScAnNeR = new Scanner(System.in);
-        StAtE = uI_sTaTe.INITIALISED;
+        this.control = control;
+        scanner = new Scanner(System.in);
+        uiState = PayFineUIState.INITIALISED;
         control.setUI(this);
     }
-    
+
     
 
-    public void RuN() {
-        DiSpLaYoUtPuT("Pay Fine Use Case UI\n");
+    public void run() {
+        displayOutput("Pay Fine Use Case UI\n");
         
         while (true) {
             
-            switch (StAtE) {
+            switch (uiState) {
             
             case READY:
-                String PaT_Str = GeTiNpUt("Swipe patron card (press <enter> to cancel): ");
-                if (PaT_Str.length() == 0) {
-                    CoNtRoL.cancel();
+                String patStr = getInput("Swipe patron card (press <enter> to cancel): ");
+                if (patStr.length() == 0) {
+                    control.cancel();
                     break;
                 }
                 try {
-                    long PAtroN_ID = Long.valueOf(PaT_Str).longValue();
-                    CoNtRoL.cardSwiped(PAtroN_ID);
+                    long patronId = Long.valueOf(patStr).longValue();
+                    control.cardSwiped(patronId);
                 }
                 catch (NumberFormatException e) {
-                    DiSpLaYoUtPuT("Invalid patronID");
+                    displayOutput("Invalid patronID");
                 }
                 break;
                 
             case PAYING:
-                double AmouNT = 0;
-                String Amt_Str = GeTiNpUt("Enter amount (<Enter> cancels) : ");
-                if (Amt_Str.length() == 0) {
-                    CoNtRoL.cancel();
+                double amount = 0;
+                String amtStr = getInput("Enter amount (<Enter> cancels) : ");
+                if (amtStr.length() == 0) {
+                    control.cancel();
                     break;
                 }
                 try {
-                    AmouNT = Double.valueOf(Amt_Str).doubleValue();
+                    amount = Double.valueOf(amtStr).doubleValue();
                 }
                 catch (NumberFormatException e) {}
-                if (AmouNT <= 0) {
-                    DiSpLaYoUtPuT("Amount must be positive");
+                if (amount <= 0) {
+                    displayOutput("Amount must be positive");
                     break;
                 }
-                CoNtRoL.payFine(AmouNT);
+                control.payFine(amount);
                 break;
                                 
             case CANCELLED:
-                DiSpLaYoUtPuT("Pay Fine process cancelled");
+                displayOutput("Pay Fine process cancelled");
                 return;
             
             case COMPLETED:
-                DiSpLaYoUtPuT("Pay Fine process complete");
+                displayOutput("Pay Fine process complete");
                 return;
             
             default:
-                DiSpLaYoUtPuT("Unhandled state");
-                throw new RuntimeException("FixBookUI : unhandled state :" + StAtE);            
+                displayOutput("Unhandled state");
+                throw new RuntimeException("FixBookUI : unhandled state :" + uiState);
             
             }        
         }        
     }
 
     
-    private String GeTiNpUt(String prompt) {
+    private String getInput(String prompt) {
         System.out.print(prompt);
-        return ScAnNeR.nextLine();
+        return scanner.nextLine();
     }    
         
         
-    private void DiSpLaYoUtPuT(Object object) {
-        System.out.println(object);
+    private void displayOutput(Object displayObject) {
+        System.out.println(displayObject);
     }    
             
 
-    public void DiSplAY(Object object) {
-        DiSpLaYoUtPuT(object);
+    public void display(Object displayObject) {
+        displayOutput(displayObject);
     }
 
 
-    public void SeTcOmPlEtEd() {
-        StAtE = uI_sTaTe.COMPLETED;
+    public void setCompleted() {
+        uiState = PayFineUIState.COMPLETED;
         
     }
 
 
-    public void SeTpAyInG() {
-        StAtE = uI_sTaTe.PAYING;
+    public void setPaying() {
+        uiState = PayFineUIState.PAYING;
         
     }
 
 
-    public void SeTcAnCeLlEd() {
-        StAtE = uI_sTaTe.CANCELLED;
+    public void setCancelled() {
+        uiState = PayFineUIState.CANCELLED;
         
     }
 
 
-    public void SeTrEaDy() {
-        StAtE = uI_sTaTe.READY;
+    public void setReady() {
+        uiState = PayFineUIState.READY;
         
     }
 
