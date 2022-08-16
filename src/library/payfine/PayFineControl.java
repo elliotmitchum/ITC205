@@ -49,8 +49,9 @@ public class PayFineControl {
         }
 
         double change = patron.payFine(paymentAmount);
-        if (change > 0)
+        if (change > 0) {
             ui.DiSplAY(String.format("Change: $%.2f", change));
+        }
         
         ui.DiSplAY(patron);
         ui.SeTcOmPlEtEd();
