@@ -29,14 +29,14 @@ public class PayFineUI {
             switch (uiState) {
             
             case READY:
-                String PaT_Str = getInput("Swipe patron card (press <enter> to cancel): ");
-                if (PaT_Str.length() == 0) {
+                String patStr = getInput("Swipe patron card (press <enter> to cancel): ");
+                if (patStr.length() == 0) {
                     control.cancel();
                     break;
                 }
                 try {
-                    long PAtroN_ID = Long.valueOf(PaT_Str).longValue();
-                    control.cardSwiped(PAtroN_ID);
+                    long patronId = Long.valueOf(patStr).longValue();
+                    control.cardSwiped(patronId);
                 }
                 catch (NumberFormatException e) {
                     displayOutput("Invalid patronID");
