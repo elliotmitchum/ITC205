@@ -30,9 +30,10 @@ public class FixItemControl {
 
 
     public void itemScanned(long itemId) {
-        if (!state.equals(ControlState.READY))
+        if (!state.equals(ControlState.READY)) {
             throw new RuntimeException("FixItemControl: cannot call itemScanned except in READY state");
-            
+        }
+
         currentItem = library.getItem(itemId);
         
         if (currentItem == null) {
