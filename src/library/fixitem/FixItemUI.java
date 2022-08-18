@@ -34,8 +34,8 @@ public class FixItemUI {
 
                 else {
                     try {
-                        long itEM_Id = Long.valueOf(itemEntryString).longValue();
-                        control.itemScanned(itEM_Id);
+                        long itemId = Long.valueOf(itemEntryString).longValue();
+                        control.itemScanned(itemId);
                     }
                     catch (NumberFormatException e) {
                         displayOutput("Invalid itemId");
