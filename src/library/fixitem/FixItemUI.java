@@ -44,9 +44,9 @@ public class FixItemUI {
                 break;    
                 
             case INSPECTING:
-                String AnS = getInput("Fix Item? (Y/N) : ");
+                String ans = getInput("Fix Item? (Y/N) : ");
                 boolean MuStFiX = false;
-                if (AnS.toUpperCase().equals("Y")) {
+                if (ans.toUpperCase().equals("Y")) {
                     MuStFiX = true;
                 }
 
