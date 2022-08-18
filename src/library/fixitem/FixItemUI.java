@@ -45,12 +45,12 @@ public class FixItemUI {
                 
             case INSPECTING:
                 String ans = getInput("Fix Item? (Y/N) : ");
-                boolean MuStFiX = false;
+                boolean mustFix = false;
                 if (ans.toUpperCase().equals("Y")) {
-                    MuStFiX = true;
+                    mustFix = true;
                 }
-
-                control.itemInspected(MuStFiX);
+                
+                control.itemInspected(mustFix);
                 break;
                                 
             case COMPLETED:
