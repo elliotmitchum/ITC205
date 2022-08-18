@@ -13,7 +13,7 @@ import library.entities.Library;
 import library.entities.Loan;
 import library.entities.Patron;
 import library.fixitem.FixItemUI;
-import library.fixitem.fIX_iTeM_cONTROL;
+import library.fixitem.FixItemControl;
 import library.payfine.PayFineUI;
 import library.payfine.PayFineControl;
 import library.returnBook.ReturnItemControl;
@@ -179,7 +179,7 @@ public class Main {
 
 
     private static void fixItems() {
-        new FixItemUI(new fIX_iTeM_cONTROL()).RuN();
+        new FixItemUI(new FixItemControl()).RuN();
     }
 
 
