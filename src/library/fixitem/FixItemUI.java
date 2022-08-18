@@ -6,16 +6,16 @@ public class FixItemUI {
 
     private enum FixItemUIState { INITIALISED, READY, INSPECTING, COMPLETED };
 
-    private fIX_iTeM_cONTROL control;
+    private FixItemControl control;
     private Scanner scanner;
     private FixItemUIState uiState;
 
     
-    public FixItemUI(fIX_iTeM_cONTROL control) {
+    public FixItemUI(FixItemControl control) {
         this.control = control;
         scanner = new Scanner(System.in);
         uiState = FixItemUIState.INITIALISED;
-        control.SeT_Ui(this);
+        control.setUI(this);
     }
 
 
@@ -27,14 +27,15 @@ public class FixItemUI {
             switch (uiState) {
             
             case READY:
-                String ITem_EnTrY_StRiNg = getInput("Scan Item (<enter> completes): ");
-                if (ITem_EnTrY_StRiNg.length() == 0) 
-                    control.PrOcEsSiNgCoMpLeTeD();
-                
+                String itemEntryString = getInput("Scan Item (<enter> completes): ");
+                if (itemEntryString.length() == 0) {
+                    control.processingCompleted();
+                }
+
                 else {
                     try {
-                        long itEM_Id = Long.valueOf(ITem_EnTrY_StRiNg).longValue();
-                        control.ItEm_ScAnNeD(itEM_Id);
+                        long itEM_Id = Long.valueOf(itemEntryString).longValue();
+                        control.itemScanned(itEM_Id);
                     }
                     catch (NumberFormatException e) {
                         displayOutput("Invalid itemId");
@@ -45,10 +46,11 @@ public class FixItemUI {
             case INSPECTING:
                 String AnS = getInput("Fix Item? (Y/N) : ");
                 boolean MuStFiX = false;
-                if (AnS.toUpperCase().equals("Y")) 
+                if (AnS.toUpperCase().equals("Y")) {
                     MuStFiX = true;
-                
-                control.IteMInSpEcTeD(MuStFiX);
+                }
+
+                control.itemInspected(MuStFiX);
                 break;
                                 
             case COMPLETED:
@@ -71,13 +73,13 @@ public class FixItemUI {
     }    
         
         
-    private void displayOutput(Object displayobject) {
-        System.out.println(displayobject);
+    private void displayOutput(Object displayObject) {
+        System.out.println(displayObject);
     }
     
 
-    public void display(Object displayobject) {
-        displayOutput(displayobject);
+    public void display(Object displayObject) {
+        displayOutput(displayObject);
     }
 
 
