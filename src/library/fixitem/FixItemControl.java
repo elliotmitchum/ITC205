@@ -24,7 +24,7 @@ public class FixItemControl {
         }
 
         this.ui = ui;
-        this.ui.SeTrEaDy();
+        this.ui.setReady();
         state = ControlState.READY;
     }
 
@@ -37,15 +37,15 @@ public class FixItemControl {
         currentItem = library.getItem(itemId);
         
         if (currentItem == null) {
-            ui.dIsPlAy("Invalid itemId");
+            ui.display("Invalid itemId");
             return;
         }
         if (!currentItem.isDamaged()) {
-            ui.dIsPlAy("Item has not been damaged");
+            ui.display("Item has not been damaged");
             return;
         }
-        ui.dIsPlAy(currentItem);
-        ui.SeTiNsPeCtInG();
+        ui.display(currentItem);
+        ui.setInspecting();
         state = ControlState.INSPECTING;
     }
 
@@ -59,7 +59,7 @@ public class FixItemControl {
         }
         
         currentItem = null;
-        ui.SeTrEaDy();
+        ui.setReady();
         state = ControlState.READY;
     }
 
@@ -68,7 +68,7 @@ public class FixItemControl {
         if (!state.equals(ControlState.READY)) {
             throw new RuntimeException("FixItemControl: cannot call processingCompleted except in READY state");
         }
-        ui.SeTcOmPlEtEd();
+        ui.setCompleted();
     }
 
 }
